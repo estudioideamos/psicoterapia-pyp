@@ -479,3 +479,32 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
  document.addEventListener('visibilitychange',()=>{if(document.hidden)hide();});
  enabled.addEventListener('change',hide);
 })();
+
+// Mobile footer navigation: collapsed by default, keyboard accessible.
+(() => {
+ const mobile=matchMedia('(max-width:700px)');
+ const items=[];
+ document.querySelectorAll('.footer-premium .footer-col').forEach(col=>{
+   const heading=col.querySelector('h4'), list=col.querySelector('ul');
+   if(!heading||!list)return;
+   const label=heading.textContent.trim();
+   const button=document.createElement('button');
+   button.type='button';button.className='footer-toggle';button.textContent=label;
+   list.id=list.id||'footer-links-'+items.length;
+   button.setAttribute('aria-controls',list.id);
+   heading.replaceChildren(button);
+   button.addEventListener('click',()=>{
+     if(!mobile.matches)return;
+     const expanded=button.getAttribute('aria-expanded')==='true';
+     button.setAttribute('aria-expanded',String(!expanded));list.hidden=expanded;
+   });
+   items.push({button,list});
+ });
+ const sync=()=>items.forEach(({button,list})=>{
+   list.hidden=mobile.matches;
+   button.disabled=!mobile.matches;
+   if(mobile.matches)button.setAttribute('aria-expanded','false');
+   else button.removeAttribute('aria-expanded');
+ });
+ mobile.addEventListener('change',sync);sync();
+})();

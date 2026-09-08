@@ -1440,3 +1440,28 @@ input,select,textarea{font-size:16px;}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){.team-fact strong{transition:transform .45s var(--ease);}.team-fact:hover strong{transform:translateY(-5px);}}
 @media(max-width:700px){.team-facts{gap:30px;margin-top:44px;}.team-fact{padding-top:22px;gap:18px;}.team-fact strong{font-size:36px;}.team-years>span{font-size:100px;}.team-fact p br{display:none;}}
 @media(prefers-reduced-motion:reduce){.team-fact{transition-delay:0s;}}
+.footer-toggle{font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;border:0;background:none;padding:0;}
+.footer-toggle:disabled{opacity:1;cursor:default;}
+.footer-col ul[hidden]{display:none;}
+@media(max-width:700px){
+main .eyebrow{justify-content:center;}
+main h1,main h2,main h3,main p,.team-fact,.services-intro,.home-section-copy,.faq-intro{text-align:center;}
+main h1,main h2,main p{margin-left:auto;margin-right:auto;}
+.home-section-copy,.home-contact>div:first-child,.team-intro>div,.profile-editorial>.container--text{text-align:center;}
+.home-contact-method{justify-content:center;}
+.contact-method-copy{text-align:center;}
+main .btn,main .btn--text{margin-left:auto;margin-right:auto;}
+.team-fact{align-items:center;}
+.team-fact p{text-align:center;}
+.reviews-heading{align-items:center;text-align:center;}
+.review-author{justify-content:center;}
+.review-stars{justify-content:center;}
+.home-benefit summary h3,.faq-item summary{text-align:left;}
+.contact-form label,.contact-form input,.contact-form textarea{text-align:left;}
+.footer-toggle{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;min-height:48px;cursor:pointer;}
+.footer-toggle::after{content:"+";font-size:22px;font-weight:400;}
+.footer-toggle[aria-expanded=true]::after{content:"−";}
+.footer-toggle:focus-visible{outline:2px solid var(--green-soft);outline-offset:5px;border-radius:4px;}
+.footer-premium .footer-col:has(.footer-toggle) h4{margin-bottom:0;}
+.footer-premium .footer-col:has(.footer-toggle[aria-expanded=true]) h4{margin-bottom:14px;}
+}
