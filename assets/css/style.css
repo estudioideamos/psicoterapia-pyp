@@ -1256,8 +1256,8 @@ section{ position: relative; }
 .faq-watermarked>.container{position:relative;z-index:1;}
 .faq-watermarked .home-watermark::before{width:clamp(360px,48vw,680px);left:-12%;top:8%;transform:rotate(-9deg);opacity:.045;}
 @media(max-width:860px){.faq-watermarked .home-watermark::before{left:-35%;top:2%;opacity:.035;}}
-.home-original .platform-heading .eyebrow{width:100%;max-width:none;margin-inline:auto;justify-content:center;}
-.home-original .platform-heading .eyebrow::after{content:"";display:block;width:28px;height:1px;background:currentColor;flex:none;}
+.platform-heading .eyebrow{width:100%;max-width:none;margin-inline:auto;justify-content:center;}
+.platform-heading .eyebrow::after{content:"";display:block;width:28px;height:1px;background:currentColor;flex:none;}
 
 /* An editorial ribbon connecting each page to the footer. */
 .editorial-marquee{overflow:hidden;background:#a9bc86;color:#172016;border-top:1px solid #17201620;border-bottom:1px solid #17201620;padding:clamp(14px,1.8vw,24px) 0;}
