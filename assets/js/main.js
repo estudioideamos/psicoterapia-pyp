@@ -90,6 +90,18 @@ waFloat.setAttribute('aria-label', 'Escribir por WhatsApp');
 waFloat.innerHTML = `<span class="wa-float-ring"></span><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C9.37 3 3.96 8.4 3.96 15.06c0 2.22.6 4.3 1.65 6.09L4 29l7.99-1.57a12.9 12.9 0 0 0 4.05.65c6.67 0 12.08-5.4 12.08-12.06C28.12 8.4 22.71 3 16.04 3Zm0 21.9c-1.35 0-2.68-.26-3.9-.76l-.28-.11-4.75.93.95-4.63-.13-.3a10.03 10.03 0 0 1-1.55-5.37c0-5.55 4.52-10.06 10.09-10.06 2.7 0 5.23 1.05 7.13 2.95a10.02 10.02 0 0 1 2.96 7.12c0 5.56-4.52 10.07-10.09 10.07l.02-.02Zm5.53-7.54c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.36.22-.66.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.51-1.79-1.69-2.09-.18-.3-.02-.46.13-.6.14-.14.3-.36.45-.55.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.15 4.54.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35Z"/></svg>`;
 document.body.appendChild(waFloat);
 
+document.querySelectorAll('.hero,.page-hero').forEach(hero => {
+  if(hero.querySelector('.hero-badge')) return;
+  const badge=document.createElement('a');
+  badge.className='hero-badge';
+  badge.href='https://maps.google.com/?cid=6902933862849097791';
+  badge.target='_blank';
+  badge.rel='noopener';
+  badge.setAttribute('aria-label','Ver reseñas de Psicoterapia P&P en Google Maps: 5,0 estrellas');
+  badge.innerHTML='<strong>5,0</strong><span class="star" aria-hidden="true">★</span><span>Google</span>';
+  hero.appendChild(badge);
+});
+
 /* Marquee: duplica el contenido una vez para que el loop de -50% sea perfecto */
 document.querySelectorAll('.marquee-track').forEach(track => {
   track.insertAdjacentHTML('beforeend', track.innerHTML);
@@ -200,19 +212,16 @@ observeReveal('.img-reveal', 'is-ready');
    6) Contadores animados (cifras de confianza / trayectoria)
 --------------------------------------------------------- */
 function animateCount(el){
-  const target = parseFloat(el.dataset.count);
-  const decimals = parseInt(el.dataset.decimals || '0', 10);
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
-  if(reduceMotion || typeof gsap === 'undefined'){
-    el.textContent = prefix + target.toFixed(decimals).replace('.', ',') + suffix;
-    return;
-  }
-  const obj = { v: 0 };
-  gsap.to(obj, {
-    v: target, duration: 1.6, ease: 'power2.out',
-    onUpdate: () => { el.textContent = prefix + obj.v.toFixed(decimals).replace('.', ',') + suffix; }
-  });
+  const target=Number(el.dataset.count), decimals=Number(el.dataset.decimals||0);
+  const paint=value=>{el.textContent=(el.dataset.prefix||'')+value.toFixed(decimals).replace('.',',')+(el.dataset.suffix||'');};
+  if(reduceMotion){paint(target);return;}
+  const start=performance.now();
+  const tick=now=>{
+    const progress=Math.min((now-start)/1200,1);
+    paint(target*(1-Math.pow(1-progress,3)));
+    if(progress<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
 }
 const counters = document.querySelectorAll('[data-count]');
 if(counters.length){
@@ -229,7 +238,7 @@ if(counters.length){
 /* ---------------------------------------------------------
    7) Halo de cursor en el hero
 --------------------------------------------------------- */
-document.querySelectorAll('.hero').forEach(hero => {
+document.querySelectorAll('.hero,.page-hero').forEach(hero => {
   const glow = hero.querySelector('.cursor-glow');
   if(!glow || reduceMotion) return;
   hero.addEventListener('pointermove', (e) => {
@@ -242,29 +251,45 @@ document.querySelectorAll('.hero').forEach(hero => {
 /* ---------------------------------------------------------
    9) GSAP: titulares, parallax de fondos, línea de pasos
 --------------------------------------------------------- */
-if(!(reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined')){
-  gsap.registerPlugin(ScrollTrigger);
-
+if(!reduceMotion){
   document.querySelectorAll('[data-split-lines]').forEach(el => {
-    const words = el.textContent.trim().split(' ');
-    el.innerHTML = words.map(w => `<span class="line-word">${w}</span>`).join(' ');
-    gsap.from(el.querySelectorAll('.line-word'), {
-      opacity: 0, y: 24, duration: .7, ease: 'power2.out', stagger: 0.045, delay: .15
+    const words = el.textContent.trim().split(/s+/);
+    el.innerHTML = words.map(word => '<span class="line-word">' + word + '</span>').join(' ');
+    el.querySelectorAll('.line-word').forEach((word, index) => {
+      word.animate(
+        [{opacity:0, transform:'translateY(24px)'}, {opacity:1, transform:'translateY(0)'}],
+        {duration:700, delay:150 + index * 45, easing:'cubic-bezier(.16,1,.3,1)', fill:'both'}
+      );
     });
   });
-  document.querySelectorAll('[data-fade-up]').forEach((el, i) => {
-    gsap.from(el, { opacity:0, y:18, duration:.8, ease:'power2.out', delay: .3 + i*0.12 });
-  });
-
-  // parallax muy leve de las imágenes de fondo por sección
-  document.querySelectorAll('.bg-photo img, .bg-photo video').forEach(img => {
-    gsap.to(img, {
-      yPercent: 8, ease: 'none',
-      scrollTrigger: { trigger: img.closest('section, .mode-card--lead'), start: 'top bottom', end: 'bottom top', scrub: true }
-    });
+  document.querySelectorAll('[data-fade-up]').forEach((el, index) => {
+    el.animate(
+      [{opacity:0, transform:'translateY(18px)'}, {opacity:1, transform:'translateY(0)'}],
+      {duration:800, delay:300 + index * 120, easing:'cubic-bezier(.16,1,.3,1)', fill:'both'}
+    );
   });
 }
 
+function scheduleMobius(){
+  if(reduceMotion || !document.querySelector('[data-mobius-network]')) return;
+  const load = () => {
+    const three = document.createElement('script');
+    three.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    three.onload = () => {
+      const network = document.createElement('script');
+      network.src = 'assets/js/mobius-network.js?v=20260908-performance';
+      document.body.appendChild(network);
+    };
+    document.body.appendChild(three);
+  };
+  const schedule = () => {
+    if('requestIdleCallback' in window) requestIdleCallback(load, {timeout:2500});
+    else setTimeout(load, 900);
+  };
+  if(document.readyState === 'complete') schedule();
+  else window.addEventListener('load', schedule, {once:true});
+}
+scheduleMobius();
 /* ---------------------------------------------------------
    9b) Video inmersivo: reproducir al hacer clic en el botón de play
 --------------------------------------------------------- */
@@ -402,7 +427,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
 })();
 // Keep tall sticky copy readable on shorter screens and at enlarged text sizes.
 (() => {
- const columns = document.querySelectorAll('.home-exterior .home-section-copy,.home-offer>div:first-child,.home-contact>div:first-child,.home-benefits-intro,.faq-intro');
+ const columns = document.querySelectorAll('.home-exterior .home-section-copy,.home-offer>div:first-child,.home-contact>div:first-child,.home-benefits-intro,.faq-intro,.services-intro');
  if (!columns.length) return;
  const desktop = matchMedia('(min-width:861px)');
  const update = () => columns.forEach(column => {

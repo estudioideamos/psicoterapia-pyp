@@ -12,10 +12,11 @@
 <meta property="og:image" content="assets/img/og-image.jpg">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/img/hero-network-poster.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20260908-carousel">
+<link rel="stylesheet" href="assets/css/style.css?v=20260908-final">
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltear al contenido</a>
@@ -62,7 +63,7 @@
 <main id="contenido">
 
   <section class="page-hero">
-    <div class="bg-photo" data-mobius-network aria-hidden="true"><img src="assets/img/hero-network-poster.jpg" alt="" fetchpriority="high"></div>
+    <div class="bg-photo" data-mobius-network aria-hidden="true"><img src="assets/img/hero-network-poster.jpg" alt="" width="1366" height="958" fetchpriority="high"></div>
     <div class="container">
       <svg class="loop-icon" viewBox="0 0 100 50" fill="none" aria-hidden="true"><path d="M25,25 C25,10 42,10 50,25 C58,40 75,40 75,25 C75,10 58,10 50,25 C42,40 25,40 25,25 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
       <p class="eyebrow">Psicoterapia online P&amp;P</p>
@@ -75,7 +76,7 @@
     <div class="container">
       <div class="intro">
         <div class="img-reveal intro-media reveal">
-          <picture><source srcset="assets/img/photo-notebook.webp" type="image/webp"><img src="assets/img/photo-notebook.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="assets/img/photo-notebook.webp" type="image/webp"><img src="assets/img/photo-notebook.jpg" alt="" width="928" height="1152" loading="lazy" decoding="async"></picture>
         </div>
         <div>
           <p class="reveal">Podemos ayudarte a trabajar temas como ansiedad, depresión, relaciones interpersonales, autoestima y más. Iniciamos un proceso que busca resolver los motivos de consulta iniciales y continuar trabajando en las cuestiones que puedan surgir a lo largo del análisis.</p>
@@ -93,13 +94,13 @@
 
   <div class="section-divider" aria-hidden="true" data-loop-icon></div>
 
-  <section class="section-y bg-paper-deep">
-    <div class="container">
+  <section class="section-y bg-paper-deep services-editorial"><span class="home-watermark" aria-hidden="true"></span>
+    <div class="container services-layout"><div class="services-intro">
       <p class="eyebrow reveal">Beneficios del tratamiento</p>
-      <h2 class="reveal" style="max-width:20ch;">Motivos de consulta que trabajamos</h2>
+      <h2 class="reveal" style="max-width:20ch;">Motivos de consulta<br><em>que trabajamos.</em></h2>
       <p class="reveal" style="max-width:62ch;">Es importante destacar que la terapia es un proceso personalizado, y que sus beneficios pueden manifestarse de manera gradual a lo largo del tiempo. El establecimiento de una relación de confianza con el terapeuta y la consistencia en la participación son clave para lograr resultados positivos.</p>
 
-      <div class="benefit-grid reveal" style="margin-top:20px;">
+      <a class="btn--text" href="contacto.html">Charlemos</a></div><div class="benefit-grid">
         <div class="benefit-item"><span class="num">01</span><span data-icon="calm"></span><h3>Alivio del estrés y la ansiedad</h3><p>Un espacio seguro para explorar y abordar las fuentes de estrés y ansiedad, desarrollando estrategias de afrontamiento efectivas.</p></div>
         <div class="benefit-item"><span class="num">02</span><span data-icon="connection"></span><h3>Mejora de las relaciones interpersonales</h3><p>Ayuda a desarrollar habilidades de comunicación, empatía y resolución de conflictos.</p></div>
         <div class="benefit-item"><span class="num">03</span><span data-icon="hope"></span><h3>Depresión</h3><p>Herramientas y estrategias para abordar sus síntomas, promoviendo un cambio positivo en el estado de ánimo y la perspectiva.</p></div>
@@ -191,10 +192,6 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/mobius-network.js" defer></script>
-<script src="assets/js/main.js?v=20260908-cursor" defer></script>
+<script src="assets/js/main.js?v=20260908-final" defer></script>
 </body>
 </html>

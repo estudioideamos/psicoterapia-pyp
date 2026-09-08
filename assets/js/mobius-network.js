@@ -129,13 +129,15 @@
 
   /* ---------- animación continua, cinematográfica y lenta ---------- */
   const clock = new THREE.Clock();
-  let visible = true;
+  let visible = true, inViewport = true, lastRender = 0;
+  new IntersectionObserver(entries => { inViewport = entries[0].isIntersecting; }).observe(mount);
   let firstFramePainted = false;
   document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
 
   function tick(){
     raf = requestAnimationFrame(tick);
-    if(!visible) return;
+    if(!visible || !inViewport || performance.now() - lastRender < 32) return;
+    lastRender = performance.now();
     const t = clock.getElapsedTime();
     group.rotation.y = t * 0.16;
     group.rotation.x = 0.55 + Math.sin(t * 0.12) * 0.08;

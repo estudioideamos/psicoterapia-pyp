@@ -25,10 +25,10 @@
  const update=()=>{
    const items=[...cards.children];
    const index=items.reduce((best,el,i)=>Math.abs(el.offsetLeft-cards.offsetLeft-cards.scrollLeft)<Math.abs(items[best].offsetLeft-cards.offsetLeft-cards.scrollLeft)?i:best,0);
-   counter.textContent=String(index+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0');
-   controls.hidden=cards.scrollWidth<=cards.clientWidth+2;
-   section.querySelector('.reviews-prev').disabled=cards.scrollLeft<3;
-   section.querySelector('.reviews-next').disabled=cards.scrollLeft>=cards.scrollWidth-cards.clientWidth-3;
+   counter.textContent=String(Number(items[index].dataset.reviewIndex||index)+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0');
+   controls.hidden=items.length<2;
+   section.querySelector('.reviews-prev').disabled=false;
+   section.querySelector('.reviews-next').disabled=false;
  };
  const setup=()=>{
    observer?.disconnect();
@@ -37,7 +37,7 @@
    }),{threshold:.25});
    section.querySelectorAll('.review-stars').forEach(el=>{stars(el);observer.observe(el);});
    [...cards.children].forEach((card,i)=>{
-     card.setAttribute('aria-label','Reseña '+(i+1)+' de '+cards.children.length);
+     card.dataset.reviewIndex=i;card.setAttribute('aria-label','Reseña '+(i+1)+' de '+cards.children.length);
      const text=card.querySelector('.review-text');
      text.removeAttribute('tabindex');
      text.classList.add('review-text-collapsed');
@@ -56,7 +56,17 @@
    });
    requestAnimationFrame(update);
  };
- const move=direction=>cards.scrollBy({left:direction*(cards.firstElementChild.getBoundingClientRect().width+24),behavior:reduce.matches?'instant':'smooth'});
+ const move=direction=>{
+   if(cards.scrollWidth<=cards.clientWidth+3){
+     if(direction>0)cards.append(cards.firstElementChild);else cards.prepend(cards.lastElementChild);
+     if(!reduce.matches)cards.animate([{opacity:.5,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:550});
+     update();return;
+   }
+   const end=cards.scrollWidth-cards.clientWidth;
+   if(direction>0&&cards.scrollLeft>=end-3)cards.scrollTo({left:0,behavior:reduce.matches?'instant':'smooth'});
+   else if(direction<0&&cards.scrollLeft<3)cards.scrollTo({left:end,behavior:reduce.matches?'instant':'smooth'});
+   else cards.scrollBy({left:direction*(cards.firstElementChild.getBoundingClientRect().width+24),behavior:reduce.matches?'instant':'smooth'});
+ };
  section.querySelector('.reviews-prev').addEventListener('click',()=>move(-1));
  section.querySelector('.reviews-next').addEventListener('click',()=>move(1));
  cards.addEventListener('keydown',event=>{
@@ -66,6 +76,19 @@
  cards.addEventListener('scroll',update,{passive:true});
  new ResizeObserver(update).observe(cards);
  setup();
+ let inView=false,hovered=false,paused=false;
+ const pause=document.createElement('button');
+ pause.type='button';pause.className='reviews-pause';pause.textContent='Ⅱ';
+ pause.setAttribute('aria-label','Pausar carrusel');pause.setAttribute('aria-pressed','false');
+ controls.append(pause);
+ pause.addEventListener('click',()=>{paused=!paused;pause.textContent=paused?'▶':'Ⅱ';pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Reanudar carrusel':'Pausar carrusel');});
+ cards.addEventListener('pointerenter',()=>{hovered=true;});
+ cards.addEventListener('pointerleave',()=>{hovered=false;});
+ new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;},{threshold:.3}).observe(cards);
+ setInterval(()=>{
+   if(!inView||document.hidden||reduce.matches||paused||hovered||section.contains(document.activeElement)||cards.querySelector('[aria-expanded="true"]'))return;
+   move(1);
+ },15000);
  const key=window.PYP_GOOGLE_MAPS_KEY;
  if(!key)return;
  const load=async()=>{
