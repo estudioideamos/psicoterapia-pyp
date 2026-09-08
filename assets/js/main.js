@@ -49,6 +49,26 @@ grain.className = 'grain';
 grain.setAttribute('aria-hidden', 'true');
 document.body.appendChild(grain);
 
+/* El atributo autoplay no siempre dispara la reproducción de forma fiable
+   (políticas del navegador, timing de carga). Forzamos play() explícitamente
+   y, si aun así falla, mostramos el poster como <img> para nunca dejar un
+   recuadro vacío. */
+document.querySelectorAll('video[autoplay]').forEach(video => {
+  const tryPlay = () => video.play().catch(() => {
+    if(video.poster && !video.parentElement.querySelector('.video-fallback-poster')){
+      const img = document.createElement('img');
+      img.src = video.poster;
+      img.alt = '';
+      img.className = 'video-fallback-poster';
+      img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      video.style.display = 'none';
+      video.insertAdjacentElement('afterend', img);
+    }
+  });
+  tryPlay();
+  document.addEventListener('visibilitychange', () => { if(!document.hidden && video.paused) tryPlay(); });
+});
+
 /* Botón flotante de WhatsApp — en todas las páginas */
 const waFloat = document.createElement('a');
 waFloat.href = 'https://wa.me/5491151489394';
