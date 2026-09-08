@@ -1465,3 +1465,7 @@ main .btn,main .btn--text{margin-left:auto;margin-right:auto;}
 .footer-premium .footer-col:has(.footer-toggle) h4{margin-bottom:0;}
 .footer-premium .footer-col:has(.footer-toggle[aria-expanded=true]) h4{margin-bottom:14px;}
 }
+@media(min-width:861px){
+.profile-editorial>.intro-media{position:sticky;top:110px;align-self:start;max-height:calc(100vh - 140px);}
+.profile-editorial>.intro-media img{width:100%;height:100%;object-fit:cover;}
+}
