@@ -137,35 +137,26 @@ document.querySelectorAll('.reason-row[data-toggle]').forEach(row => {
    4) FAQ animado: progresa sobre <details> nativo (accesible sin JS)
 --------------------------------------------------------- */
 document.querySelectorAll('.faq-item').forEach(details => {
-  const summary = details.querySelector('summary');
-  const wrap = details.querySelector('.faq-a-wrap');
-  if(!summary || !wrap) return;
-  wrap.style.height = details.hasAttribute('open') ? 'auto' : '0px';
-
-  summary.addEventListener('click', (e) => {
-    e.preventDefault();
-    const isOpen = details.hasAttribute('open');
-    if(isOpen){
-      wrap.style.height = wrap.scrollHeight + 'px';
-      requestAnimationFrame(() => { wrap.style.height = '0px'; });
-      wrap.addEventListener('transitionend', function onEnd(ev){
-        if(ev.propertyName !== 'height') return;
-        details.removeAttribute('open');
-        wrap.removeEventListener('transitionend', onEnd);
-      });
-    } else {
-      details.setAttribute('open', '');
-      wrap.style.height = '0px';
-      requestAnimationFrame(() => { wrap.style.height = wrap.scrollHeight + 'px'; });
-      wrap.addEventListener('transitionend', function onEnd(ev){
-        if(ev.propertyName !== 'height') return;
-        wrap.style.height = 'auto';
-        wrap.removeEventListener('transitionend', onEnd);
-      });
-    }
-  });
+ const summary=details.querySelector('summary'),wrap=details.querySelector('.faq-a-wrap');
+ if(!summary||!wrap)return;
+ wrap.style.height='auto';
+ let animation=null,expanded=details.open;
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ const finish=()=>{if(animation)animation.cancel();details.open=expanded;details.style.overflow='';animation=null;};
+ motion.addEventListener('change',finish);
+ summary.addEventListener('click',event=>{
+   if(motion.matches||!details.animate){expanded=!details.open;return;}
+   event.preventDefault();
+   const from=details.getBoundingClientRect().height;
+   if(animation)animation.cancel();
+   expanded=!expanded;details.open=true;
+   const css=getComputedStyle(details),borders=parseFloat(css.borderTopWidth)+parseFloat(css.borderBottomWidth);
+   const to=expanded?details.getBoundingClientRect().height:summary.getBoundingClientRect().height+borders;
+   details.style.overflow='hidden';
+   animation=details.animate([{height:from+'px'},{height:to+'px'}],{duration:380,easing:'cubic-bezier(.16,1,.3,1)'});
+   animation.onfinish=()=>{details.open=expanded;details.style.overflow='';animation=null;};
+ });
 });
-
 /* ---------------------------------------------------------
    5) Revelado al hacer scroll — IntersectionObserver puro
       (independiente de GSAP y de recalculos de layout por fuentes/imagenes)

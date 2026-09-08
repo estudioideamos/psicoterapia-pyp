@@ -1127,8 +1127,8 @@ section{ position: relative; }
 .home-watermark::before{
  content:""; position:absolute; width:clamp(300px,42vw,640px); aspect-ratio:343 / 321;
  background:var(--green-deep); opacity:.055;
- -webkit-mask:url("../img/iso.png") center / contain no-repeat;
- mask:url("../img/iso.png") center / contain no-repeat;
+ -webkit-mask:url("../img/iso.svg") center / contain no-repeat;
+ mask:url("../img/iso.svg") center / contain no-repeat;
 }
 .home-original #exterior>.container,.home-original #beneficios>.container,.home-original #formulario>.container{position:relative; z-index:1;}
 .home-original #exterior .home-watermark::before{
@@ -1157,3 +1157,61 @@ section{ position: relative; }
    position:sticky; top:var(--column-top,110px); align-self:start;
  }
 }
+/* Platforms — a larger editorial pause with three glass-like panels. */
+.home-original .home-platforms{padding:clamp(64px,8vw,110px) 0; position:relative; overflow:hidden; isolation:isolate;}
+.home-original .home-platforms::before{content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse at 80% 100%,#a9c08428,transparent 65%);}
+.home-original .home-platforms .container{display:block;}
+.platform-heading{text-align:center; margin-bottom:44px;}
+.platform-heading .eyebrow{justify-content:center; color:var(--green-soft);}
+.home-original .platform-heading h2{font-size:clamp(2.7rem,5vw,4.8rem); line-height:1.05; letter-spacing:-.04em;}
+.platform-heading h2 em{color:var(--green-soft); font-weight:400;}
+.platform-panels{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px;}
+.platform-panel{display:flex; flex-direction:column; align-items:center; padding:36px 20px; border:1px solid #ffffff24; border-radius:20px; background:linear-gradient(145deg,#ffffff0d,#ffffff03); box-shadow:0 20px 36px -26px #0009; transition:transform .4s,border-color .4s,background .4s;}
+.platform-symbol{display:grid; place-items:center; width:62px; height:62px; border-radius:18px; color:#a9c084; background:#a9c08414; margin-bottom:22px; font-size:30px; font-family:var(--font-body);}
+.platform-symbol .feature-icon{color:var(--green-soft);}
+.platform-name{font-family:var(--font-display); font-size:28px; color:#fff;}
+.platform-caption{font-family:var(--font-mono); font-size:12px; color:#acb7a5; margin-top:8px; letter-spacing:.08em;}
+@media(hover:hover){.platform-panel:hover{transform:translateY(-6px); border-color:#a9c08466; background:#a9c08410;}}
+
+/* Compact contact form; the phone contains the country selector. */
+.contact-form.contact-form-premium{display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:clamp(24px,3vw,36px); border:1px solid #18201716; border-radius:20px; background:var(--paper); box-shadow:0 26px 60px -35px #18201755;}
+.contact-form-premium .field{min-width:0; gap:8px;}
+.contact-form-premium .field:has(input[type=tel]),.contact-form-premium .field-wide,.contact-form-premium .form-note{grid-column:1/-1;}
+.contact-form-premium .field label{font-family:var(--font-body); font-size:13px; letter-spacing:0; text-transform:none; color:#4a4a3f;}
+.contact-form-premium .field input,.contact-form-premium .field textarea{width:100%; border:1px solid #18201722; border-radius:9px; background:#fff8; padding:13px 14px; font-size:16px; outline-offset:3px;}
+.contact-form-premium .field input:focus,.contact-form-premium .field textarea:focus{border-color:var(--green); background:#fff;}
+.contact-form-premium button[type=submit]{grid-column:1/-1; justify-self:stretch; justify-content:center; margin:0;}
+.contact-form-premium .form-note{font-size:12px; max-width:none; line-height:1.5; margin:0;}
+.contact-form-premium[hidden]{display:none;}
+.contact-form-premium .iti{width:100%; --iti-border-color:#d3d7cc; --iti-hover-color:#edf1e7; --iti-spacer-horizontal:12px;}
+.iti__dropdown-content{border-radius:12px; box-shadow:0 18px 50px #18201725; color:#182017; font-family:var(--font-body); font-size:14px;}
+.iti--container{z-index:1000;}
+.phone-error{font-size:12px; color:#9d2828; margin:0;}
+.contact-form-premium .iti input{padding-left:var(--iti-input-padding,100px);}
+.contact-form-premium .iti__selected-country{border-radius:9px 0 0 9px;}
+
+/* The same accordion treatment as Benefits. */
+.faq-premium .reveal{display:grid; gap:10px;}
+.faq-premium .faq-item{border:1px solid #18201718; border-radius:12px; background:#f7f5ef; transition:background .35s,box-shadow .35s;}
+.faq-premium .faq-item summary{display:grid; grid-template-columns:28px minmax(0,1fr) 38px; gap:18px; padding:24px; border-radius:12px;}
+.faq-premium .faq-title{font-family:var(--font-display); font-size:clamp(1.2rem,2vw,1.55rem); line-height:1.3;}
+.faq-premium .home-benefit-plus{width:38px; height:38px; border:1px solid #4c653133; border-radius:50%; background:#a9c08414;}
+.faq-premium .faq-item[open]{background:#182017; box-shadow:0 18px 38px -22px #10140f80;}
+.faq-premium .faq-item[open] summary{color:#f7f5ef;}
+.faq-premium .faq-item[open] .home-benefit-num{color:var(--green-soft);}
+.faq-premium .faq-item[open] .home-benefit-plus{background:var(--green-soft); color:#182017;}
+.faq-premium .faq-item[open] .home-benefit-plus::after{transform:translate(-50%,-50%);}
+.faq-premium .faq-a{padding:0 70px 30px; color:#ced7c7; max-width:none; font-size:16px; line-height:1.8;}
+.faq-premium summary:focus-visible{outline:2px solid var(--green); outline-offset:4px;}
+@media(max-width:600px){
+ .platform-panels{grid-template-columns:1fr; gap:12px;}
+ .platform-panel{display:grid; grid-template-columns:48px 1fr; column-gap:18px; padding:22px; text-align:left;}
+ .platform-symbol{grid-row:1/3; width:48px; height:48px; margin:0; border-radius:14px;}
+ .platform-name{font-size:25px;} .platform-caption{margin-top:2px;}
+ .contact-form.contact-form-premium{grid-template-columns:1fr; padding:22px; gap:16px;}
+ .faq-premium .faq-item summary{grid-template-columns:22px 1fr 32px; gap:10px; padding:20px 16px;}
+ .faq-premium .home-benefit-plus{width:32px; height:32px;}
+ .faq-premium .faq-a{padding:0 24px 24px 48px; font-size:15px;}
+}
+@media(prefers-reduced-motion:reduce){.platform-panel,.faq-premium .faq-item{transition:none;}}
+.platform-symbol>svg{width:32px;height:32px;}.platform-symbol-zoom{color:#87b8ff;}.platform-symbol-meet{color:#a9c084;}
