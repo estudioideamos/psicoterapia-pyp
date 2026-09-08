@@ -1215,3 +1215,13 @@ section{ position: relative; }
 }
 @media(prefers-reduced-motion:reduce){.platform-panel,.faq-premium .faq-item{transition:none;}}
 .platform-symbol>svg{width:32px;height:32px;}.platform-symbol-zoom{color:#87b8ff;}.platform-symbol-meet{color:#a9c084;}
+
+/* FAQ mirrors the two-column Benefits composition. */
+.faq-columns{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(40px,6vw,90px); align-items:start;}
+.faq-intro h2{max-width:13ch; margin-top:0;}
+.faq-intro p{max-width:43ch;}
+.faq-intro .btn--text{display:inline-block; margin-top:20px;}
+.faq-columns>.reveal{min-width:0;}
+@supports(overflow:clip){body:has(.faq-columns){overflow-x:clip;}}
+@media(min-width:861px){.faq-intro{position:sticky; top:var(--column-top,110px); align-self:start;}}
+@media(max-width:860px){.faq-columns{grid-template-columns:1fr;}.faq-intro p{max-width:65ch;}}
