@@ -419,3 +419,38 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
  if (document.fonts) document.fonts.ready.then(update);
  update();
 })();
+// Fine mouse input only; native pointer remains available in forms and reduced motion.
+(() => {
+ const enabled=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+ const dot=document.createElement('div'),ring=document.createElement('div');
+ dot.className='pyp-cursor pyp-cursor-dot';ring.className='pyp-cursor pyp-cursor-ring';
+ dot.setAttribute('aria-hidden','true');ring.setAttribute('aria-hidden','true');
+ document.body.append(dot,ring);
+ let x=0,y=0,rx=0,ry=0,frame=0,visible=false;
+ const draw=()=>{
+   rx+=(x-rx)*.22;ry+=(y-ry)*.22;
+   ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+   frame=Math.abs(x-rx)+Math.abs(y-ry)>.1?requestAnimationFrame(draw):0;
+ };
+ const hide=()=>{
+   visible=false;dot.style.opacity=ring.style.opacity='0';
+   document.documentElement.classList.remove('pyp-cursor-active');
+   ring.classList.remove('is-down');cancelAnimationFrame(frame);frame=0;
+ };
+ document.addEventListener('pointermove',event=>{
+   if(!enabled.matches||event.pointerType!=='mouse'||event.target.closest('input,textarea,select,[contenteditable],iframe')){hide();return;}
+   x=event.clientX;y=event.clientY;
+   if(!visible){rx=x;ry=y;visible=true;}
+   dot.style.transform='translate3d('+x+'px,'+y+'px,0)';
+   dot.style.opacity=ring.style.opacity='1';
+   document.documentElement.classList.add('pyp-cursor-active');
+   ring.classList.toggle('is-link',!!event.target.closest('a,button,summary,[role="button"]'));
+   if(!frame)frame=requestAnimationFrame(draw);
+ },{passive:true});
+ document.addEventListener('pointerdown',()=>ring.classList.add('is-down'),{passive:true});
+ document.addEventListener('pointerup',()=>ring.classList.remove('is-down'),{passive:true});
+ document.documentElement.addEventListener('pointerleave',hide);
+ document.addEventListener('keydown',hide);window.addEventListener('blur',hide);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)hide();});
+ enabled.addEventListener('change',hide);
+})();
