@@ -305,3 +305,26 @@ if(contactForm && formSuccess){
    11) Año dinámico en el footer
 --------------------------------------------------------- */
 document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+// Footer light follows the pointer only on devices with a fine pointer.
+(() => {
+  const footer = document.querySelector('.footer-premium');
+  if (!footer) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  let frame = 0;
+  footer.addEventListener('pointermove', (event) => {
+    if (motion.matches || !pointer.matches) return;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const box = footer.getBoundingClientRect();
+      footer.style.setProperty('--footer-x', (event.clientX - box.left) + 'px');
+      footer.style.setProperty('--footer-y', (event.clientY - box.top) + 'px');
+    });
+  }, { passive: true });
+  footer.addEventListener('pointerleave', () => {
+    cancelAnimationFrame(frame);
+    footer.style.removeProperty('--footer-x');
+    footer.style.removeProperty('--footer-y');
+  });
+})();
