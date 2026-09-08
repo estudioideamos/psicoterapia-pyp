@@ -374,6 +374,18 @@ section{ position: relative; }
 .mode-card h3{ margin-bottom: 2px; }
 .mode-card--lead h3{ color:#fff; }
 
+.platform-badges{ display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 18px; }
+.platform-badge{
+  display:inline-flex; align-items:center; gap:.5em;
+  padding:.5em .95em; border-radius:999px; font-size:.76rem; font-weight:600;
+  background: rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.2); color:#fff;
+  letter-spacing:.01em;
+}
+.platform-badge svg{ width:15px; height:15px; flex:none; }
+.platform-zoom svg{ color:#4A9EFF; }
+.platform-meet svg{ color:#3DDC84; }
+.platform-whatsapp svg{ color:#3DDC84; }
+
 @media (max-width: 860px){
   .modes{ grid-template-columns: 1fr; }
   .mode-card--lead{ grid-row: auto; border-bottom: 1px solid var(--ink); }
@@ -405,6 +417,25 @@ section{ position: relative; }
 .reasons-full .reason-row{ cursor: default; grid-template-columns: 64px 1fr; }
 .reasons-full .reason-desc{ max-height: none; overflow:visible; margin-top:8px; grid-column: 2 / -1; }
 .reasons-full .arrow{ display:none; }
+
+/* ================= grilla de beneficios (infográfica, tipo ficha técnica) ================= */
+.benefit-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink); border-left: 1px solid var(--ink);
+}
+.benefit-item{
+  padding: clamp(22px, 2.6vw, 34px) clamp(20px, 2.4vw, 30px);
+  border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  display:flex; flex-direction:column; gap: 14px;
+}
+.benefit-item .feature-icon, .benefit-item .loop-icon{ width: 30px; height: 30px; }
+.benefit-item .loop-icon{ color: var(--green); }
+.benefit-item h3{ font-size: 1.05rem; margin-bottom: 2px; }
+.benefit-item p{ font-size: .88rem; color: var(--text-muted); margin:0; }
+.benefit-item .num{ font-family: var(--font-display); font-size: .85rem; color: var(--text-muted); }
+
+@media (max-width: 900px){ .benefit-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .benefit-grid{ grid-template-columns: 1fr; } }
 
 /* ================= CÓMO COMENZAR ================= */
 .steps{ position:relative; overflow:hidden; }
@@ -701,6 +732,15 @@ section{ position: relative; }
 #contacto-home .bg-photo::after{
   background: linear-gradient(0deg, rgba(20,21,15,.7) 10%, rgba(20,21,15,.3) 50%, rgba(20,21,15,.2) 100%);
 }
+
+/* cierre de reseñas: foto clara, se vela con el tono papel para que el texto tinta siga legible */
+.reviews-close .bg-photo::before{ opacity:.28; }
+.reviews-close .bg-photo::after{
+  background: radial-gradient(60% 90% at 50% 50%, rgba(247,245,239,.55) 0%, rgba(247,245,239,.88) 100%);
+}
+.reviews-close .bg-photo img{ filter: saturate(.7) contrast(1.02) brightness(1.05); }
+.reviews-close h2, .reviews-close .eyebrow{ color: var(--ink); }
+.reviews-close p{ color: var(--text-body); }
 
 /* halo de cursor en el hero (sutil, se apaga con reduced-motion o sin puntero fino) */
 .cursor-glow{
