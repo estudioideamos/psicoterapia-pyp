@@ -178,7 +178,7 @@
       <h2 class="reveal" style="max-width:16ch;">Cerca, estés donde estés</h2>
       <div class="modes" style="margin-top:40px;">
         <article class="mode-card mode-card--lead reveal">
-          <div class="bg-photo" aria-hidden="true"><picture><source srcset="assets/img/photo-videocall.webp" type="image/webp"><img src="assets/img/photo-videocall.jpg" alt="" loading="lazy"></picture></div>
+          <div class="bg-photo" data-mobius-network aria-hidden="true"><picture><source srcset="assets/img/photo-videocall.webp" type="image/webp"><img src="assets/img/photo-videocall.jpg" alt="" loading="lazy"></picture></div>
           <div>
             <span data-icon="online"></span>
             <h3 style="margin-top:18px;">Terapia online</h3>
@@ -264,7 +264,7 @@
 
   <!-- MOMENTO INMERSIVO: CIFRA -->
   <section class="stat-break on-dark">
-    <div class="bg-photo" aria-hidden="true">
+    <div class="bg-photo" data-mobius-network aria-hidden="true">
       <picture><source srcset="assets/img/photo-walking.webp" type="image/webp"><img src="assets/img/photo-walking.jpg" alt="" loading="lazy"></picture>
     </div>
     <div class="container">
@@ -320,7 +320,10 @@
   <!-- VIDEO INMERSIVO -->
   <section class="video-break on-dark">
     <div class="frame">
-      <video muted loop playsinline poster="assets/img/photo-conversation.jpg">
+      <div class="bg-photo" data-mobius-network aria-hidden="true">
+        <picture><source srcset="assets/img/photo-conversation.webp" type="image/webp"><img src="assets/img/photo-conversation.jpg" alt=""></picture>
+      </div>
+      <video muted loop playsinline>
         <source src="assets/video/hero.mp4" type="video/mp4">
       </video>
       <button class="play-trigger" aria-label="Reproducir video">

@@ -4,12 +4,15 @@
    Degrada con elegancia: si no hay WebGL, JS o el usuario pidió menos
    movimiento, queda la fotografía estática de fondo. */
 (function(){
-  const mount = document.querySelector('[data-mobius-network]');
-  if(!mount) return;
+  const mounts = document.querySelectorAll('[data-mobius-network]');
+  if(!mounts.length) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduceMotion || typeof THREE === 'undefined') return;
 
+  mounts.forEach(initNetwork);
+
+  function initNetwork(mount){
   let renderer, scene, camera, group, raf, resizeObs;
   try {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -147,4 +150,5 @@
     }
   }
   tick();
+  }
 })();
