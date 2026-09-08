@@ -129,7 +129,7 @@ section{ position: relative; }
   position: relative;
   display:inline-flex; align-items:center; gap:.9em;
   padding: 1.05em 1.8em;
-  border-radius: 2px;
+  border-radius: 10px;
   font-weight: 600; font-size: .78rem;
   letter-spacing: .12em; text-transform: uppercase;
   white-space: nowrap; overflow:hidden;
@@ -197,7 +197,7 @@ section{ position: relative; }
 .nav-primary a[aria-current="page"]{ color: var(--green-deep); }
 
 .header-cta{ display:flex; align-items:center; gap: 22px; justify-self:end; }
-.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 10px; text-transform:none; letter-spacing:normal; font-size:.92rem; }
+.header-cta .btn--primary{ padding: .75em 1.5em; text-transform:none; letter-spacing:normal; font-size:.92rem; }
 .header-cta .btn--ghost{
   background:none; border:0; color: var(--ink); padding:0;
   font-size:.85rem; font-weight:600; letter-spacing:.02em; text-transform:none;
@@ -281,7 +281,7 @@ section{ position: relative; }
 
 .hero-badge{
   position:absolute; z-index:3; right:0; top: clamp(140px, 24vh, 220px);
-  background: var(--green-deep); color:#fff;
+  background: var(--gold); color: var(--ink);
   writing-mode: vertical-rl; padding: 22px 12px;
   font-family: var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
   display:flex; align-items:center; gap:10px;
@@ -724,9 +724,6 @@ section{ position: relative; }
   .js .img-reveal{ clip-path:none; }
   .img-reveal img{ transform:none; transition:none; }
 }
-
-/* ================= botones magnéticos ================= */
-.btn.is-magnetic{ will-change: transform; }
 
 /* ================= sección de cifra (momento inmersivo intermedio) ================= */
 .stat-break{

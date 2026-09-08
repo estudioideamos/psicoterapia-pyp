@@ -238,22 +238,6 @@ document.querySelectorAll('.hero').forEach(hero => {
 });
 
 /* ---------------------------------------------------------
-   8) Botones magnéticos (desplazamiento sutil hacia el cursor)
---------------------------------------------------------- */
-if(!reduceMotion && window.matchMedia('(pointer: fine)').matches){
-  document.querySelectorAll('.btn--primary, .btn--ghost').forEach(btn => {
-    btn.classList.add('is-magnetic');
-    btn.addEventListener('mousemove', (e) => {
-      const r = btn.getBoundingClientRect();
-      const x = (e.clientX - r.left - r.width / 2) * 0.25;
-      const y = (e.clientY - r.top - r.height / 2) * 0.35;
-      btn.style.transform = `translate(${x}px, ${y}px)`;
-    });
-    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-  });
-}
-
-/* ---------------------------------------------------------
    9) GSAP: titulares, parallax de fondos, línea de pasos
 --------------------------------------------------------- */
 if(!(reduceMotion || typeof gsap === 'undefined')){
