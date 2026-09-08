@@ -181,10 +181,8 @@ section{ position: relative; }
 }
 .site-header.is-scrolled .container{ box-shadow: 0 10px 24px -14px rgba(20,21,15,.3); padding-block: 9px; }
 
-.logo{ display:flex; align-items:center; gap:11px; flex:none; justify-self:start; }
-.logo img{ height: 34px; width:auto; flex:none; }
-.logo-text{ font-family: var(--font-body); font-weight:800; font-size:1.28rem; line-height:1; color: var(--ink); letter-spacing:-.01em; }
-.logo-text small{ display:block; font-weight:600; font-size:.5rem; letter-spacing:.1em; text-transform:uppercase; color: var(--text-muted); margin-top:4px; }
+.logo{ display:flex; align-items:center; flex:none; justify-self:start; }
+.logo img{ height: 34px; width:auto; }
 
 .nav-primary{ display:flex; align-items:center; justify-content:center; gap: clamp(16px, 2vw, 34px); justify-self:center; }
 .nav-primary a{
