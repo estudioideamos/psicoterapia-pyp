@@ -379,7 +379,9 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
        expanded = !expanded;
        details.style.height = '';
        details.open = true;
-       const to = expanded ? details.getBoundingClientRect().height : summary.getBoundingClientRect().height + 1;
+       const style = getComputedStyle(details);
+       const borders = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+       const to = expanded ? details.getBoundingClientRect().height : summary.getBoundingClientRect().height + borders;
        details.style.overflow = 'hidden';
        animation = animate(details,[{height:from+'px'},{height:to+'px'}],{duration:380});
        animation.onfinish = () => {
