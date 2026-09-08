@@ -386,6 +386,16 @@ section{ position: relative; }
 .platform-meet svg{ color:#3DDC84; }
 .platform-whatsapp svg{ color:#3DDC84; }
 
+.platform-badges--light{ margin-top: 22px; margin-bottom: 4px; }
+.platform-badges--light .platform-badge{
+  background: var(--white); border-color: var(--line); color: var(--ink);
+  padding: .7em 1.2em; font-size: .85rem;
+}
+.platform-badges--light .platform-badge svg{ width:18px; height:18px; }
+.platform-badges--light .platform-zoom svg{ color:#2D8CFF; }
+.platform-badges--light .platform-meet svg{ color:#00AC47; }
+.platform-badges--light .platform-whatsapp svg{ color:#25D366; }
+
 @media (max-width: 860px){
   .modes{ grid-template-columns: 1fr; }
   .mode-card--lead{ grid-row: auto; border-bottom: 1px solid var(--ink); }
