@@ -199,7 +199,7 @@ section{ position: relative; }
 .nav-primary a[aria-current="page"]{ color: var(--green-deep); }
 
 .header-cta{ display:flex; align-items:center; gap: 22px; justify-self:end; }
-.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 10px; }
+.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 10px; text-transform:none; letter-spacing:normal; font-size:.92rem; }
 .header-cta .btn--ghost{
   background:none; border:0; color: var(--ink); padding:0;
   font-size:.85rem; font-weight:600; letter-spacing:.02em; text-transform:none;
