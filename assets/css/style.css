@@ -1335,15 +1335,16 @@ section{ position: relative; }
 .editorial-marquee{padding-block:clamp(14px,1.8vw,24px);}
 .editorial-marquee .editorial-marquee-group{font-size:clamp(26px,3.5vw,50px);line-height:1.15;}
 @media(min-width:861px){.review-card{flex-basis:calc((100% - 48px)/3);padding:28px;min-height:430px;}}
-.reviews-rating{position:relative;overflow:hidden;isolation:isolate;min-width:245px;padding:30px 38px;border-radius:28px;background:radial-gradient(ellipse at 90% 0,#78965355,transparent 65%),#192318;border:1px solid #81936365;box-shadow:0 24px 45px -26px #17201690,inset 0 0 0 7px #ffffff03;transition:transform .35s,box-shadow .35s;}
+.reviews-rating{position:relative;overflow:hidden;isolation:isolate;min-width:280px;padding:22px 28px;grid-template-columns:auto auto;gap:6px 20px;border-radius:24px;background:radial-gradient(ellipse at 90% 0,#78965355,transparent 65%),#192318;border:1px solid #81936365;box-shadow:0 24px 45px -26px #17201690,inset 0 0 0 7px #ffffff03;transition:transform .35s,box-shadow .35s;}
 .reviews-rating::before{content:"";position:absolute;inset:12px;border:1px solid #c6d8a51f;border-radius:19px;pointer-events:none;}
-.reviews-rating .reviews-google{color:#fff;font-size:15px;}
-.reviews-rating .reviews-score{font-size:90px;line-height:1.05;color:#f6f4e9;letter-spacing:-.055em;margin-block:9px;}
-.reviews-rating .reviews-count{color:#d5ddc6;margin-top:7px;}
-.reviews-rating .reviews-rating-link{color:#c0d399;border-top:1px solid #c0d39935;padding-top:13px;margin-top:12px;font-size:11px;letter-spacing:.04em;}
+.reviews-rating .reviews-google{grid-column:1/-1;color:#fff;font-size:13px;letter-spacing:.02em;}
+.reviews-rating .reviews-score{grid-column:1;grid-row:2/4;align-self:center;font-size:68px;line-height:1;color:#f6f4e9;letter-spacing:-.055em;margin:0;}
+.reviews-rating > .review-stars{grid-column:2;grid-row:2;align-self:end;margin:0;font-size:16px;}
+.reviews-rating .reviews-count{grid-column:2;grid-row:3;color:#d5ddc6;margin:0;align-self:start;}
+.reviews-rating .reviews-rating-link{grid-column:1/-1;justify-self:stretch;text-align:center;color:#c0d399;border-top:1px solid #c0d39935;padding-top:9px;margin-top:5px;font-size:11px;letter-spacing:.04em;}
 .reviews-rating .review-star:not(.is-empty){background-image:linear-gradient(110deg,#c7a351,#ffedb2,#c7a351);}
 @media(hover:hover){.reviews-rating:hover{transform:translateY(-4px);box-shadow:0 30px 50px -24px #17201685;}}
-@media(max-width:540px){.reviews-rating{min-width:0;padding:24px 28px;}.reviews-rating .reviews-score{font-size:72px;}.reviews-controls{gap:6px;}.reviews-controls button{width:36px;height:36px;}.reviews-page{min-width:38px;}}
+@media(max-width:540px){.reviews-rating{min-width:0;width:100%;max-width:340px;padding:20px 26px;justify-items:center;}.reviews-rating .reviews-score{font-size:62px;justify-self:center;}.reviews-controls{gap:6px;}.reviews-controls button{width:36px;height:36px;}.reviews-page{min-width:38px;}}
 @media(prefers-reduced-motion:reduce){.reviews-rating{transition:none;}.reviews-rating:hover{transform:none;}}
 
 /* Services: an editorial index with a persistent introduction. */
