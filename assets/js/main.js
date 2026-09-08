@@ -497,6 +497,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
      if(!mobile.matches)return;
      const expanded=button.getAttribute('aria-expanded')==='true';
      button.setAttribute('aria-expanded',String(!expanded));list.hidden=expanded;
+     if(!expanded && !reduceMotion) list.animate([{opacity:0,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'ease-out'});
    });
    items.push({button,list});
  });
