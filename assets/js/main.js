@@ -251,7 +251,7 @@ document.querySelectorAll('.hero').forEach(hero => {
 /* ---------------------------------------------------------
    9) GSAP: titulares, parallax de fondos, línea de pasos
 --------------------------------------------------------- */
-if(!(reduceMotion || typeof gsap === 'undefined')){
+if(!(reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined')){
   gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll('[data-split-lines]').forEach(el => {
@@ -327,4 +327,83 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
     footer.style.removeProperty('--footer-x');
     footer.style.removeProperty('--footer-y');
   });
+})();
+// Progressive home motion. Native scrolling and content visibility are preserved.
+(() => {
+ const home = document.querySelector('.home-original');
+ if (!home || !('IntersectionObserver' in window)) return;
+ const preference = matchMedia('(prefers-reduced-motion: reduce)');
+ let cleanup = () => {};
+ const setup = () => {
+   cleanup();
+   if (preference.matches) return;
+   const running = new Set();
+   const animate = (el, frames, options = {}) => {
+     if (!el.animate) return;
+     const animation = el.animate(frames, {duration:850, easing:'cubic-bezier(.16,1,.3,1)', ...options});
+     running.add(animation);
+     animation.finished.then(() => running.delete(animation), () => running.delete(animation));
+     return animation;
+   };
+   home.querySelectorAll('section').forEach(section => {
+     section.querySelectorAll('.reveal').forEach((el, i) => el.style.setProperty('--entry-delay', Math.min(i % 4 * 80, 240) + 'ms'));
+   });
+   const sectionObserver = new IntersectionObserver(entries => {
+     entries.forEach(({target,isIntersecting}) => {
+       target.classList.toggle('is-in-view', isIntersecting);
+       if (!isIntersecting) return;
+       target.classList.add('section-arrived');
+     });
+   }, {threshold:0,rootMargin:'0px 0px -12% 0px'});
+   home.querySelectorAll(':scope>section').forEach(section => sectionObserver.observe(section));
+   const items = home.querySelectorAll('.home-benefit,.platform-badge,.testi-card,.home-about-link h2,.home-about-link a');
+   const entryObserver = new IntersectionObserver(entries => {
+     let index = 0;
+     entries.forEach(({target,isIntersecting}) => {
+       if (!isIntersecting) return;
+       animate(target,[{opacity:.25,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}],{delay:index++ * 55});
+       entryObserver.unobserve(target);
+     });
+   },{threshold:.08});
+   items.forEach(el => entryObserver.observe(el));
+   const detailsCleanup = [];
+   home.querySelectorAll('.home-benefit').forEach(details => {
+     const summary = details.querySelector('summary');
+     let animation = null;
+     let expanded = details.open;
+     const click = event => {
+       if (!details.animate) return;
+       event.preventDefault();
+       const from = details.getBoundingClientRect().height;
+       if (animation) animation.cancel();
+       expanded = !expanded;
+       details.style.height = '';
+       details.open = true;
+       const to = expanded ? details.getBoundingClientRect().height : summary.getBoundingClientRect().height + 1;
+       details.style.overflow = 'hidden';
+       animation = animate(details,[{height:from+'px'},{height:to+'px'}],{duration:380});
+       animation.onfinish = () => {
+         details.open = expanded;
+         details.style.overflow = '';
+         animation = null;
+       };
+     };
+     summary.addEventListener('click',click);
+     detailsCleanup.push(() => {
+       summary.removeEventListener('click',click);
+       if (animation) animation.cancel();
+       details.open = expanded;
+       details.style.overflow = '';
+     });
+   });
+   cleanup = () => {
+     sectionObserver.disconnect();
+     entryObserver.disconnect();
+     running.forEach(animation => animation.cancel());
+     detailsCleanup.forEach(fn => fn());
+     home.querySelectorAll('.reveal').forEach(el => el.style.removeProperty('--entry-delay'));
+   };
+ };
+ setup();
+ preference.addEventListener('change',setup);
 })();
