@@ -281,12 +281,13 @@ section{ position: relative; }
 
 .hero-badge{
   position:absolute; z-index:3; right:0; top: clamp(140px, 24vh, 220px);
-  background: var(--gold); color: var(--ink);
+  background: var(--green-deep); color:#fff;
   writing-mode: vertical-rl; padding: 22px 12px;
   font-family: var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
   display:flex; align-items:center; gap:10px;
 }
 .hero-badge strong{ font-family:var(--font-display); font-style:normal; font-size:1rem; letter-spacing:0; }
+.hero-badge .star{ color: var(--gold); }
 @media (max-width: 700px){ .hero-badge{ display:none; } }
 
 .hero-tag{
@@ -547,7 +548,12 @@ section{ position: relative; }
 
 /* ================= red de la cinta de Moebius (WebGL, en vivo) ================= */
 [data-mobius-network]{ position:absolute; inset:0; z-index:0; }
-.mobius-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; }
+.mobius-canvas{
+  position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1;
+  opacity:0; transition: opacity 1s var(--ease);
+}
+[data-mobius-network] picture, [data-mobius-network] img{ transition: opacity 1s var(--ease); }
+[data-mobius-network].has-network .mobius-canvas{ opacity:1; }
 [data-mobius-network].has-network picture, [data-mobius-network].has-network img{ opacity:0; }
 
 /* ================= manifiesto (frase inmersiva corta) ================= */

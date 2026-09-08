@@ -127,6 +127,7 @@
   /* ---------- animación continua, cinematográfica y lenta ---------- */
   const clock = new THREE.Clock();
   let visible = true;
+  let firstFramePainted = false;
   document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
 
   function tick(){
@@ -138,8 +139,12 @@
     camera.position.x = Math.sin(t * 0.05) * 0.6;
     camera.lookAt(0, 0, 0);
     renderer.render(scene, camera);
+    // recién con el primer frame ya pintado hacemos el fundido cruzado,
+    // para no mostrar el canvas vacío mientras la foto todavía se ve
+    if(!firstFramePainted){
+      firstFramePainted = true;
+      requestAnimationFrame(() => mount.classList.add('has-network'));
+    }
   }
   tick();
-
-  mount.classList.add('has-network');
 })();
