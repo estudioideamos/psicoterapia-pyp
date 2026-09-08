@@ -253,7 +253,7 @@ document.querySelectorAll('.hero,.page-hero').forEach(hero => {
 --------------------------------------------------------- */
 if(!reduceMotion){
   document.querySelectorAll('[data-split-lines]').forEach(el => {
-    const words = el.textContent.trim().split(/s+/);
+    const words = el.textContent.trim().split(/\s+/);
     el.innerHTML = words.map(word => '<span class="line-word">' + word + '</span>').join(' ');
     el.querySelectorAll('.line-word').forEach((word, index) => {
       word.animate(

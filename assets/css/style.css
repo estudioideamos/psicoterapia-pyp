@@ -1395,3 +1395,25 @@ body:has(.team-intro){overflow-x:clip;}
 #tratamiento .home-section-copy{position:sticky;top:var(--column-top,110px);align-self:start;}
 }
 @media(max-width:860px){.profile-editorial{grid-template-columns:1fr;}.profile-editorial h2{margin-bottom:28px;}.profile-chapter{padding:22px 0;}}
+.page-hero .eyebrow{color:var(--green-soft);}.page-hero .eyebrow::before{background:currentColor;}
+
+/* Mobile reading rhythm and touch targets. */
+@media(max-width:700px){
+.footer-premium,.footer-premium .footer-cta,.footer-premium .footer-col{text-align:center;}
+.footer-premium .footer-cta{align-items:center;}
+.footer-premium .eyebrow{justify-content:center;}
+.footer-premium .footer-col ul{padding-left:0;}
+.footer-premium .footer-col a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;overflow-wrap:anywhere;max-width:100%;}
+.footer-premium .contact-line{display:block;}
+.footer-premium .footer-credit{justify-content:center;}
+.reviews-bottom{flex-direction:column;align-items:stretch;gap:16px;}
+.reviews-bottom>p{max-width:none;text-align:center;}
+.reviews-controls{justify-content:center;flex-wrap:wrap;}
+.reviews-controls button{width:44px;height:44px;}
+.review-card{flex-basis:100%;min-width:0;}
+.home-contact-method{min-width:0;}
+.contact-method-copy{min-width:0;overflow-wrap:anywhere;}
+input,select,textarea{font-size:16px;}
+.page-hero h1,.hero h1{overflow-wrap:normal;word-break:normal;}
+.intro>div{min-width:0;}
+}
