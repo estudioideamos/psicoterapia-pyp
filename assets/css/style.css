@@ -318,7 +318,7 @@ section{ position: relative; }
   padding-top: clamp(150px, 22vw, 210px); padding-bottom: clamp(56px, 8vw, 90px);
   position: relative; overflow:hidden;
 }
-.page-hero .loop-icon{ width: 46px; height:46px; color: var(--green-soft); margin-bottom: 22px; }
+.page-hero .loop-icon,.page-hero [data-loop-icon]{display:none!important;}
 .page-hero h1{ color:#fff; max-width: 18ch; }
 .page-hero p{ color: var(--text-body-dark); max-width: 56ch; }
 
