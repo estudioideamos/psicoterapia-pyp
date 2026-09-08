@@ -965,7 +965,7 @@ section{ position: relative; }
 @media(max-width:640px){.footer-premium .footer-credit{justify-content:center;}}
 /* Home: original content, editorial sections. */
 .home-original .home-hero-description{max-width:48ch; color:#fff; font-size:1rem;}
-.home-about-link{padding:34px 0; border-bottom:1px solid var(--line);}
+.home-about-link{padding:34px 0; background:var(--green-soft); color:var(--ink); border-bottom:1px solid rgba(20,21,15,.08);}
 .home-about-link .container{display:flex; justify-content:space-between; align-items:center; gap:24px;}
 .home-about-link h2{font-size:clamp(1.35rem,2.5vw,2rem); margin:0;}
 .home-about-link a{flex-shrink:0;}
