@@ -1120,3 +1120,29 @@ section{ position: relative; }
  .home-original .home-benefit h3{font-size:1.15rem;}
  .home-original .home-benefit>p{padding:0 20px 24px 48px; font-size:15px;}
 }
+/* Original P&P tree as a quiet, oversized background signature. */
+.home-watermark{
+ position:absolute; inset:0; overflow:hidden; pointer-events:none; user-select:none; z-index:0;
+}
+.home-watermark::before{
+ content:""; position:absolute; width:clamp(300px,42vw,640px); aspect-ratio:343 / 321;
+ background:var(--green-deep); opacity:.055;
+ -webkit-mask:url("../img/iso.png") center / contain no-repeat;
+ mask:url("../img/iso.png") center / contain no-repeat;
+}
+.home-original #exterior>.container,.home-original #beneficios>.container,.home-original #formulario>.container{position:relative; z-index:1;}
+.home-original #exterior .home-watermark::before{
+ width:clamp(420px,60vw,900px); right:-12%; bottom:-24%;
+ background:var(--green-soft); opacity:.075; transform:rotate(-12deg);
+}
+.home-original #beneficios .home-watermark::before{
+ width:clamp(360px,45vw,650px); left:-13%; bottom:3%; transform:rotate(9deg); opacity:.055;
+}
+.home-original #formulario .home-watermark::before{
+ left:-7%; top:-10%; width:clamp(320px,40vw,600px); transform:rotate(-8deg); opacity:.045;
+}
+@media(max-width:860px){
+ .home-original #exterior .home-watermark::before{right:-35%; bottom:-8%; opacity:.065;}
+ .home-original #beneficios .home-watermark::before{left:-42%; bottom:12%; opacity:.04;}
+ .home-original #formulario .home-watermark::before{left:-35%; top:0; opacity:.04;}
+}
