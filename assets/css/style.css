@@ -1314,7 +1314,7 @@ section{ position: relative; }
 .review-text{max-height:none;overflow:visible;margin:26px 0 12px;font-size:16px;line-height:1.8;}
 .review-text-collapsed{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden;}
 .review-more{font-size:12px;color:var(--green-deep);padding:0 0 3px;border-bottom:1px solid currentColor;margin-bottom:28px;}
-.review-author{margin-top:auto;}
+.review-author{margin-top:auto;text-transform:capitalize;}
 .review-stars{display:flex;gap:5px;letter-spacing:0;position:relative;}
 .review-star{display:inline-block;font-size:20px;color:#b68a3e;transform-origin:center;}
 .review-star:not(.is-empty){background:linear-gradient(110deg,#9e7130 15%,#e5c879 42%,#b88939 65%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
