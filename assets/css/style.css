@@ -1371,3 +1371,10 @@ section{ position: relative; }
 .hero-badge:hover{background:#526f35;transform:translateX(-3px);}
 .hero-badge:focus-visible{outline-color:#fff;outline-offset:-4px;}
 #formulario{position:relative;} #formulario>.container{position:relative;z-index:1;}
+/* Team credentials across the full introduction width. */
+.team-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;padding:30px 12px;border:1px solid #81936330;border-radius:20px;background:linear-gradient(120deg,#e9eddf,#f3f1e8);}
+.team-fact{padding:4px 28px;display:flex;flex-direction:column;gap:10px;}
+.team-fact+.team-fact{border-left:1px solid #81936340;}
+.team-fact strong{font-family:var(--font-display);font-size:clamp(25px,2.6vw,36px);font-weight:400;line-height:1.15;color:var(--green-deep);}
+.team-fact>span{font-size:14px;line-height:1.6;color:var(--text-body);}
+@media(max-width:700px){.team-facts{grid-template-columns:1fr;padding:8px 24px;margin-top:32px;}.team-fact{padding:22px 0;}.team-fact+.team-fact{border-left:0;border-top:1px solid #81936340;}}
