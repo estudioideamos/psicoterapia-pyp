@@ -1514,3 +1514,29 @@ main .benefit-contact-row .btn--text{margin:0;}
 .editorial-statement h2 img{width:66px;height:46px;margin:0 4px;border-radius:14px;}
 }
 @media(prefers-reduced-motion:reduce){.review-faces img{transition:none;}.review-faces:hover img{transform:none;}}
+/* Native page transitions and restrained tactile feedback. */
+@view-transition{navigation:auto;}
+@media(prefers-reduced-motion:no-preference){
+::view-transition-old(root){animation:page-fade-out .18s ease both;}
+::view-transition-new(root){animation:page-fade-in .32s ease both;}
+@keyframes page-fade-out{to{opacity:0;}}
+@keyframes page-fade-in{from{opacity:0;}to{opacity:1;}}
+.motion-arrived .eyebrow::before,.motion-arrived .eyebrow::after{animation:line-unfold .8s cubic-bezier(.16,1,.3,1) both;}
+@keyframes line-unfold{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.btn{transition:background .3s,color .3s,box-shadow .35s,transform .25s;}
+.btn:active{transform:scale(.97);}
+.btn--text::after{transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.btn--text:active::after{transform:translateX(7px);}
+.platform-panel .platform-symbol-brand{transition:transform .5s cubic-bezier(.16,1,.3,1);}
+@media(hover:hover) and (pointer:fine){
+.platform-panel:hover .platform-symbol-brand{transform:translateY(-4px) rotate(-5deg) scale(1.08);}
+.profile-chapter{transition:box-shadow .4s,border-color .4s;}
+.profile-chapter:hover{border-color:#81936370;box-shadow:0 22px 45px -30px #17201670;}
+.editorial-statement h2 img{transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s;}
+.editorial-statement h2 img:hover{transform:rotate(-5deg) scale(1.12);box-shadow:0 14px 26px -15px #17201680;}
+.btn:hover{box-shadow:0 12px 24px -16px #17201680;}
+}
+}
+@media(prefers-reduced-motion:reduce){
+::view-transition-old(root),::view-transition-new(root){animation:none;}
+}
