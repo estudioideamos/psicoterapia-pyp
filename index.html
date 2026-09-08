@@ -21,7 +21,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script type="application/ld+json">
@@ -111,10 +111,12 @@
       <span>Descubrí más</span>
       <svg class="loop-icon" viewBox="0 0 100 50" fill="none"><path d="M25,25 C25,10 42,10 50,25 C58,40 75,40 75,25 C75,10 58,10 50,25 C42,40 25,40 25,25 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
     </div>
+    <p class="hero-tag" aria-hidden="true">Psicoterapia P&amp;P — Buenos Aires</p>
   </section>
 
   <!-- MANIFIESTO -->
   <section class="manifesto">
+    <div class="manifesto-blot" data-blot aria-hidden="true"></div>
     <div class="container">
       <p class="manifesto-line reveal">“Un espacio para poner en palabras.”</p>
     </div>
@@ -136,8 +138,8 @@
           <p class="eyebrow reveal">Tratamiento psicológico online</p>
           <h2 class="reveal" style="max-width:16ch;">Un espacio seguro, cálido y a tu medida</h2>
           <p class="reveal" style="max-width:56ch;">Comenzar una terapia psicológica es un gran paso. En Psicoterapia P&amp;P buscamos brindarte un espacio seguro y personalizado para que puedas procesar los motivos que te llevaron a comenzar tratamiento.</p>
-          <blockquote class="intro-quote reveal" style="margin-top:24px; font-size:1.15rem;">
-            “Me gustaría que podamos tener un espacio de encuentro basado en la palabra y la escucha.”
+          <blockquote class="intro-quote reveal">
+            Me gustaría que podamos tener un espacio de encuentro basado en la palabra y la escucha.
             <cite>Lic. Hernán Cassisi — fundador de Psicoterapia P&amp;P</cite>
           </blockquote>
           <a href="quienes-somos.html" class="btn--text reveal" style="margin-top:20px; display:inline-block;">Conocé más sobre el equipo</a>
@@ -156,7 +158,33 @@
     </div>
   </section>
 
-  <div class="section-divider" aria-hidden="true" data-loop-icon></div>
+  <!-- CONCEPTO -->
+  <section class="section-y bg-ink on-dark" id="concepto">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="concept-text">
+          <p class="eyebrow reveal">El concepto</p>
+          <h2 class="reveal" style="max-width:12ch;">Un recorrido sin principio ni fin</h2>
+          <p class="reveal" style="max-width:44ch;">Como la cinta de Möbius, un proceso terapéutico no tiene un cierre definitivo: es un recorrido continuo, de ida y vuelta, hacia una misma palabra que se transforma en el camino.</p>
+        </div>
+        <div class="img-reveal concept-media reveal">
+          <picture><source srcset="assets/img/concept-mobius.webp" type="image/webp"><img src="assets/img/concept-mobius.jpg" alt="" loading="lazy"></picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Terapia online</span>
+      <span>Terapia presencial</span>
+      <span>Atención en tu idioma</span>
+      <span>Psicoterapia psicoanalítica</span>
+      <span>Escucha</span>
+      <span>Palabra</span>
+    </div>
+  </div>
 
   <!-- MODALIDADES -->
   <section class="section-y bg-paper-deep" id="modalidades">
@@ -335,10 +363,6 @@
           <div class="who"><strong>Elisabet Martinez</strong><span>hace 3 meses</span></div>
         </article>
         <article class="testi-card">
-          <p>“Su forma de trabajar es clara, empática y profesional, lo que genera un espacio de confianza incluso siendo terapia online.”</p>
-          <div class="who"><strong>Favio Landolfi</strong><span>hace 6 meses</span></div>
-        </article>
-        <article class="testi-card">
           <p>“Vivo en España y con su cercanía hizo que no notara esa distancia. Si estás pensando en comenzar terapia, es la persona indicada.”</p>
           <div class="who"><strong>Nico</strong><span>hace 1 año</span></div>
         </article>
@@ -351,12 +375,8 @@
           <div class="who"><strong>Paula Carrera</strong><span>hace 3 años</span></div>
         </article>
       </div>
-      <div style="margin-top:22px; display:flex; justify-content:space-between; align-items:center;">
-        <a href="https://search.google.com/local/writereview?placeid=ChIJC1DeTevLvJURP7AiY8YlzF8" class="btn--text" target="_blank" rel="noopener">Ver todas las reseñas en Google</a>
-        <div style="display:flex; gap:10px;">
-          <button class="btn btn--ghost" data-testi-prev aria-label="Reseña anterior" style="padding:.7em .9em;">←</button>
-          <button class="btn btn--ghost" data-testi-next aria-label="Reseña siguiente" style="padding:.7em .9em;">→</button>
-        </div>
+      <div style="margin-top:26px;">
+        <a href="https://www.google.com/maps/place/Psicoterapia+P%26P+:+Terapia+psicol%C3%B3gica+online/@-34.6280195,-58.4606007,17z" class="btn--text" target="_blank" rel="noopener">Ver todas las reseñas en Google</a>
       </div>
     </div>
   </section>

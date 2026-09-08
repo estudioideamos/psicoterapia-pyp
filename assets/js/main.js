@@ -13,27 +13,34 @@ function loopIconSVG(){
       stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
   </svg>`;
 }
+function blotSVG(){
+  return `<svg viewBox="0 0 200 240" fill="currentColor" aria-hidden="true">
+    <path d="M100,8 C60,8 50,40 45,60 C38,85 60,95 50,118 C40,140 10,145 22,178 C32,205 65,222 100,232 C135,222 168,205 178,178 C190,145 160,140 150,118 C140,95 162,85 155,60 C150,40 140,8 100,8 Z"/>
+  </svg>`;
+}
 function stepsPathSVG(){
   return `<svg viewBox="0 0 1000 120" preserveAspectRatio="none" fill="none" aria-hidden="true">
     <path d="M20,60 C 260,-10 360,140 500,60 S 740,-10 980,60" stroke="#3c4f28" stroke-width="1.5" stroke-dasharray="2 10" stroke-linecap="round"/>
   </svg>`;
 }
 document.querySelectorAll('[data-mobius="steps"]').forEach(el => el.innerHTML = stepsPathSVG());
+document.querySelectorAll('[data-blot]').forEach(el => el.innerHTML = blotSVG());
 document.querySelectorAll('[data-loop-icon]').forEach(el => el.innerHTML = loopIconSVG());
 
-/* Set de íconos propios (línea, trazo redondeado) — misma familia visual que el loop */
+/* Set de íconos propios (línea, trazo redondeado) — misma familia visual que el loop,
+   con un detalle animado por ícono (sutil, se apaga con reduced-motion vía CSS) */
 const ICONS = {
-  online: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M43 36 L68 50 L43 64 Z" fill="currentColor"/>',
-  presencial: '<path d="M50 16 C64 16 75 27 75 41 C75 58 50 84 50 84 C50 84 25 58 25 41 C25 27 36 16 50 16 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><circle cx="50" cy="41" r="10" stroke="currentColor" stroke-width="4" fill="none"/>',
-  exterior: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M17 50 H83 M50 17 C61 28 61 72 50 83 C39 72 39 28 50 17 Z" stroke="currentColor" stroke-width="4" fill="none"/>',
-  calendar: '<rect x="18" y="24" width="64" height="58" rx="9" stroke="currentColor" stroke-width="4" fill="none"/><path d="M18 42 H82 M34 16 V30 M66 16 V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>',
-  clock: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M50 31 V50 L64 59" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>',
-  chat: '<path d="M50 18 C30 18 16 31 16 48 C16 57 20 64 26 70 L22 83 L37 77 C41 79 45 80 50 80 C70 80 84 67 84 50 C84 33 70 18 50 18 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/>',
+  online: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><circle class="ico-pulse" cx="50" cy="50" r="33" stroke="currentColor" stroke-width="2" fill="none"/><path d="M43 36 L68 50 L43 64 Z" fill="currentColor"/>',
+  presencial: '<path d="M50 16 C64 16 75 27 75 41 C75 58 50 84 50 84 C50 84 25 58 25 41 C25 27 36 16 50 16 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><circle class="ico-dot" cx="50" cy="41" r="10" stroke="currentColor" stroke-width="4" fill="none"/>',
+  exterior: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><g class="ico-spin" style="transform-origin:50px 50px"><path d="M17 50 H83 M50 17 C61 28 61 72 50 83 C39 72 39 28 50 17 Z" stroke="currentColor" stroke-width="4" fill="none"/></g>',
+  calendar: '<rect x="18" y="24" width="64" height="58" rx="9" stroke="currentColor" stroke-width="4" fill="none"/><path d="M18 42 H82 M34 16 V30 M66 16 V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path class="ico-check" d="M30 58 L44 70 L70 44" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
+  clock: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path class="ico-hand" d="M50 31 V50 L64 59" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" style="transform-origin:50px 50px"/>',
+  chat: '<path d="M50 18 C30 18 16 31 16 48 C16 57 20 64 26 70 L22 83 L37 77 C41 79 45 80 50 80 C70 80 84 67 84 50 C84 33 70 18 50 18 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><circle class="ico-dot" cx="50" cy="49" r="4" fill="currentColor"/>',
   mail: '<rect x="15" y="27" width="70" height="46" rx="6" stroke="currentColor" stroke-width="4" fill="none"/><path d="M18 31 L50 54 L82 31" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
   write: '<path d="M20 80 L29 78 L66 41 C69 38 69 33 66 30 C63 27 58 27 55 30 L18 67 L16 76 C15 79 17 81 20 80 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M53 32 L64 43" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'
 };
 function iconSVG(name, cls){
-  return `<svg class="feature-icon ${cls||''}" viewBox="0 0 100 100" fill="none" aria-hidden="true">${ICONS[name]||''}</svg>`;
+  return `<svg class="feature-icon icon-${name} ${cls||''}" viewBox="0 0 100 100" fill="none" aria-hidden="true">${ICONS[name]||''}</svg>`;
 }
 document.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = iconSVG(el.getAttribute('data-icon')));
 
@@ -41,6 +48,21 @@ const grain = document.createElement('div');
 grain.className = 'grain';
 grain.setAttribute('aria-hidden', 'true');
 document.body.appendChild(grain);
+
+/* Botón flotante de WhatsApp — en todas las páginas */
+const waFloat = document.createElement('a');
+waFloat.href = 'https://wa.me/5491151489394';
+waFloat.target = '_blank';
+waFloat.rel = 'noopener';
+waFloat.className = 'wa-float';
+waFloat.setAttribute('aria-label', 'Escribir por WhatsApp');
+waFloat.innerHTML = `<span class="wa-float-ring"></span><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C9.37 3 3.96 8.4 3.96 15.06c0 2.22.6 4.3 1.65 6.09L4 29l7.99-1.57a12.9 12.9 0 0 0 4.05.65c6.67 0 12.08-5.4 12.08-12.06C28.12 8.4 22.71 3 16.04 3Zm0 21.9c-1.35 0-2.68-.26-3.9-.76l-.28-.11-4.75.93.95-4.63-.13-.3a10.03 10.03 0 0 1-1.55-5.37c0-5.55 4.52-10.06 10.09-10.06 2.7 0 5.23 1.05 7.13 2.95a10.02 10.02 0 0 1 2.96 7.12c0 5.56-4.52 10.07-10.09 10.07l.02-.02Zm5.53-7.54c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.36.22-.66.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.51-1.79-1.69-2.09-.18-.3-.02-.46.13-.6.14-.14.3-.36.45-.55.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.15 4.54.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35Z"/></svg>`;
+document.body.appendChild(waFloat);
+
+/* Marquee: duplica el contenido una vez para que el loop de -50% sea perfecto */
+document.querySelectorAll('.marquee-track').forEach(track => {
+  track.insertAdjacentHTML('beforeend', track.innerHTML);
+});
 
 /* ---------------------------------------------------------
    2) Header: estado al hacer scroll + menú móvil
@@ -253,15 +275,15 @@ document.querySelectorAll('.video-break').forEach(block => {
 });
 
 /* ---------------------------------------------------------
-   10) Carrusel de testimonios (scroll nativo + botones)
+   10b) Formulario de contacto (FormSubmit): mensaje de éxito tras el redirect
 --------------------------------------------------------- */
-const track = document.querySelector('.testi-track');
-const prevBtn = document.querySelector('[data-testi-prev]');
-const nextBtn = document.querySelector('[data-testi-next]');
-if(track && prevBtn && nextBtn){
-  const step = () => track.querySelector('.testi-card')?.offsetWidth + 22 || 380;
-  prevBtn.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-  nextBtn.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+if(contactForm && formSuccess){
+  if(new URLSearchParams(location.search).get('enviado') === '1'){
+    contactForm.hidden = true;
+    formSuccess.hidden = false;
+  }
 }
 
 /* ---------------------------------------------------------

@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -109,7 +109,50 @@
     </div>
   </section>
 
-  <section class="section-y">
+  <section class="section-y" id="formulario">
+    <div class="container">
+      <div class="intro" style="grid-template-columns: 1fr 1.1fr; align-items:start;">
+        <div>
+          <p class="eyebrow reveal">Escribinos</p>
+          <h2 class="reveal" style="max-width:14ch;">Contanos tu situación</h2>
+          <p class="reveal" style="max-width:48ch;">Completá el formulario con tus datos de contacto: en breve nos vamos a estar comunicando con vos por el mismo medio en el que te anunciaste.</p>
+          <div id="formSuccess" class="form-success" hidden>
+            <span data-icon="chat" class="feature-icon"></span>
+            <p style="margin:14px 0 0;">¡Gracias! Recibimos tu mensaje y te vamos a contactar a la brevedad.</p>
+          </div>
+        </div>
+        <form class="contact-form reveal" action="https://formsubmit.co/consultas@psicoterapiapyp.com" method="POST" id="contactForm">
+          <input type="hidden" name="_subject" value="Nueva consulta desde psicoterapiapyp.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://estudioideamos.github.io/psicoterapia-pyp/contacto.html?enviado=1#formulario">
+          <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off">
+          <div class="field">
+            <label for="f-nombre">Nombre</label>
+            <input type="text" id="f-nombre" name="Nombre" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="Email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="f-telefono">Teléfono <span>(opcional)</span></label>
+            <input type="tel" id="f-telefono" name="Teléfono" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="f-mensaje">Mensaje</label>
+            <textarea id="f-mensaje" name="Mensaje" rows="4" required placeholder="Contanos brevemente tu motivo de consulta"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Enviar mensaje
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-note">Al enviar este formulario, tu mensaje llega directamente a consultas@psicoterapiapyp.com. No recolectamos información clínica: contanos solo lo necesario para que te contactemos.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-paper-deep">
     <div class="container container--text" style="text-align:center;">
       <p class="eyebrow reveal" style="justify-content:center;">Reseñas</p>
       <h2 class="reveal">5,0 en Google</h2>
