@@ -45,7 +45,7 @@
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="logo" aria-label="Psicoterapia P&P — inicio">
-      <img src="assets/img/logo-blanco.png" alt="Psicoterapia P&P" width="149" height="26">
+      <img src="assets/img/logo-color.png" alt="Psicoterapia P&P" width="149" height="26">
     </a>
     <nav class="nav-primary" aria-label="Navegación principal">
       <a href="index.html" aria-current="page">Inicio</a>
@@ -86,10 +86,8 @@
 
   <!-- HERO -->
   <section class="hero on-dark">
-    <div class="bg-photo" aria-hidden="true">
-      <video autoplay muted loop playsinline poster="assets/img/photo-hero.jpg">
-        <source src="assets/video/hero.mp4" type="video/mp4">
-      </video>
+    <div class="bg-photo" data-mobius-network aria-hidden="true">
+      <picture><source srcset="assets/img/photo-hero.webp" type="image/webp"><img src="assets/img/photo-hero.jpg" alt="" fetchpriority="high"></picture>
     </div>
     <span class="cursor-glow" aria-hidden="true"></span>
     <div class="hero-content container">
@@ -469,6 +467,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/js/mobius-network.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

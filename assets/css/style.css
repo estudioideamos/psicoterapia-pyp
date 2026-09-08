@@ -168,45 +168,53 @@ section{ position: relative; }
 .btn--text::after{ content:"→"; margin-left:.5em; transition: transform .3s var(--ease); display:inline-block; }
 .btn--text:hover::after{ transform: translateX(5px); }
 
-/* ================= HEADER ================= */
+/* ================= HEADER: cápsula flotante sobre el hero ================= */
 .site-header{
   position: fixed; inset-inline: 0; top: 0; z-index: 100;
-  padding-block: 22px;
-  transition: padding var(--dur-s) var(--ease), background-color var(--dur-s) var(--ease), box-shadow var(--dur-s) var(--ease);
+  padding: clamp(14px, 2.4vw, 26px) var(--gutter) 0;
+  transition: padding var(--dur-s) var(--ease);
 }
-.site-header::before{
-  content:""; position:absolute; inset:0; background: var(--ink);
-  opacity: 0; transition: opacity var(--dur-s) var(--ease);
-}
-.site-header.is-scrolled{ padding-block: 14px; box-shadow: 0 12px 30px -18px rgba(0,0,0,.5); }
-.site-header.is-scrolled::before{ opacity: .96; }
+.site-header.is-scrolled{ padding-top: clamp(10px, 1.6vw, 16px); }
 
 .site-header .container{
-  position: relative; z-index: 1;
-  display:flex; align-items:center; justify-content:space-between; gap: 24px;
+  position: relative; z-index: 1; max-width: 1480px;
+  display:grid; grid-template-columns: auto 1fr auto; align-items:center; gap: clamp(16px, 3vw, 40px);
+  background: var(--paper); border-radius: 18px;
+  padding: 12px clamp(14px, 2.2vw, 24px);
+  box-shadow: 0 16px 40px -20px rgba(20,21,15,.35);
+  transition: box-shadow var(--dur-s) var(--ease), padding var(--dur-s) var(--ease);
 }
-.logo{ display:flex; align-items:center; flex:none; }
-.logo img{ height: 30px; width:auto; }
+.site-header.is-scrolled .container{ box-shadow: 0 10px 24px -14px rgba(20,21,15,.3); padding-block: 9px; }
 
-.nav-primary{ display:flex; align-items:center; gap: clamp(18px, 2.4vw, 40px); }
+.logo{ display:flex; align-items:center; flex:none; justify-self:start; }
+.logo img{ height: 26px; width:auto; }
+
+.nav-primary{ display:flex; align-items:center; justify-content:center; gap: clamp(16px, 2vw, 34px); justify-self:center; }
 .nav-primary a{
-  color: var(--white); font-size: .92rem; font-weight: 500;
-  position: relative; padding-block: 4px;
+  color: var(--ink); font-size: .88rem; font-weight: 500;
+  position: relative; padding-block: 4px; white-space:nowrap;
 }
 .nav-primary a::after{
   content:""; position:absolute; left:0; right:100%; bottom:0; height:1px;
-  background: var(--green-soft); transition: right var(--dur-s) var(--ease);
+  background: var(--green-deep); transition: right var(--dur-s) var(--ease);
 }
 .nav-primary a:hover::after, .nav-primary a[aria-current="page"]::after{ right:0; }
-.nav-primary a[aria-current="page"]{ color: var(--green-soft); }
+.nav-primary a[aria-current="page"]{ color: var(--green-deep); }
 
-.header-cta{ display:flex; align-items:center; gap: 14px; }
-.header-cta .btn{ padding: .85em 1.5em; }
+.header-cta{ display:flex; align-items:center; gap: 22px; justify-self:end; }
+.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 999px; }
+.header-cta .btn--ghost{
+  background:none; border:0; color: var(--ink); padding:0;
+  font-size:.85rem; font-weight:600; letter-spacing:.02em; text-transform:none;
+  display:inline-flex; align-items:center; gap:.5em;
+}
+.header-cta .btn--ghost svg{ transform: rotate(-45deg); }
+.header-cta .btn--ghost:hover svg{ transform: rotate(-45deg) translate(2px,-2px); }
 
 .nav-toggle{
-  display:none; flex-direction:column; gap:5px; padding: 8px; flex:none;
+  display:none; flex-direction:column; gap:5px; padding: 8px; flex:none; justify-self:end;
 }
-.nav-toggle span{ width: 22px; height: 2px; background: var(--white); display:block; transition: transform .3s var(--ease), opacity .3s var(--ease); }
+.nav-toggle span{ width: 22px; height: 2px; background: var(--ink); display:block; transition: transform .3s var(--ease), opacity .3s var(--ease); }
 .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
@@ -220,14 +228,30 @@ section{ position: relative; }
   transition: transform .5s var(--ease);
 }
 .mobile-panel.is-open{ transform: translateY(0); }
-.mobile-panel nav ul{ display:flex; flex-direction:column; gap: 22px; }
-.mobile-panel nav a{ font-family: var(--font-display); font-size: 2rem; color:#fff; }
-.mobile-panel .mobile-contact{ margin-top: 40px; display:flex; flex-direction:column; gap: 10px; color: var(--text-body-dark); }
+.mobile-panel .container{ display:flex; align-items:center; justify-content:space-between; gap: 60px; flex-wrap:wrap; width:100%; }
+.mobile-panel nav ul{ display:flex; flex-direction:column; gap: clamp(14px, 2.2vw, 24px); counter-reset: navitem; }
+.mobile-panel nav li{ counter-increment: navitem; display:flex; align-items:baseline; gap: 20px; }
+.mobile-panel nav li::before{
+  content: counter(navitem, decimal-leading-zero);
+  font-family: var(--font-mono); font-size: .8rem; color: var(--green-soft); letter-spacing:.1em;
+}
+.mobile-panel nav a{
+  font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.6rem); font-weight:400;
+  color:#fff; line-height:1.1; transition: color .3s var(--ease), padding-left .3s var(--ease);
+}
+.mobile-panel nav a:hover{ color: var(--green-soft); padding-left: 10px; }
+.mobile-panel .mobile-contact{ display:flex; flex-direction:column; gap: 14px; color: var(--text-body-dark); font-family:var(--font-mono); font-size:.85rem; }
 .mobile-panel .mobile-contact a{ color: var(--green-soft); }
+@media (max-width: 700px){
+  .mobile-panel .container{ flex-direction:column; align-items:flex-start; justify-content:center; gap:40px; }
+}
 
 @media (max-width: 900px){
   .nav-primary, .header-cta .btn--ghost{ display:none; }
   .nav-toggle{ display:flex; }
+}
+@media (max-width: 640px){
+  .header-cta .btn--ghost{ display:none; }
 }
 
 /* ================= HERO ================= */
@@ -525,6 +549,11 @@ section{ position: relative; }
 
 /* ================= fondo de video (hero) ================= */
 .bg-photo video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ================= red de la cinta de Moebius (WebGL, en vivo) ================= */
+[data-mobius-network]{ position:absolute; inset:0; z-index:0; }
+.mobius-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; }
+[data-mobius-network].has-network picture, [data-mobius-network].has-network img{ opacity:0; }
 
 /* ================= manifiesto (frase inmersiva corta) ================= */
 .manifesto{ position:relative; padding-block: clamp(60px, 10vw, 110px); text-align:center; overflow:hidden; }
