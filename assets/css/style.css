@@ -1378,3 +1378,4 @@ section{ position: relative; }
 .team-fact strong{font-family:var(--font-display);font-size:clamp(25px,2.6vw,36px);font-weight:400;line-height:1.15;color:var(--green-deep);}
 .team-fact>span{font-size:14px;line-height:1.6;color:var(--text-body);}
 @media(max-width:700px){.team-facts{grid-template-columns:1fr;padding:8px 24px;margin-top:32px;}.team-fact{padding:22px 0;}.team-fact+.team-fact{border-left:0;border-top:1px solid #81936340;}}
+.img-reveal,.home-original .img-reveal,.intro-media,.home-exterior-image{border-radius:20px;overflow:hidden;}.img-reveal img,.intro-media img,.home-exterior-image img{border-radius:20px;}
