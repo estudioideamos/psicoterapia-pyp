@@ -1228,3 +1228,16 @@ section{ position: relative; }
 .platform-symbol.platform-symbol-brand{background:transparent; border-radius:0;}
 .platform-symbol-brand img{width:42px; height:42px; object-fit:contain;}
 @media(max-width:600px){.platform-symbol-brand img{width:36px;height:36px;}}
+/* Direct contact details complete the editorial side of the form. */
+.home-contact-methods{margin-top:30px; display:grid; gap:0; max-width:100%; border-top:1px solid #4c653128;}
+.home-contact-method{display:grid; grid-template-columns:44px minmax(0,1fr) 20px; align-items:center; gap:15px; padding:20px 0; border-bottom:1px solid #4c653128;}
+.contact-method-icon{width:44px; height:44px; display:grid; place-items:center; border:1px solid #4c65311f; border-radius:50%; background:#f7f5ef88; transition:background .3s,transform .3s;}
+.contact-method-icon .feature-icon{width:25px;height:25px;color:var(--green-deep);}
+.contact-method-copy{display:flex; flex-direction:column; min-width:0; gap:4px;}
+.contact-method-label{font-family:var(--font-mono); color:var(--green-deep); font-size:11px; letter-spacing:.06em; text-transform:uppercase;}
+.contact-method-copy strong{font-family:var(--font-body); color:var(--ink); font-size:clamp(13px,1.12vw,16px); font-weight:500; overflow-wrap:anywhere;}
+.contact-method-arrow{color:var(--green-deep); transition:transform .3s;}
+.home-contact-method:hover .contact-method-icon{background:#a9c08430;transform:translateY(-2px);}
+.home-contact-method:hover .contact-method-arrow{transform:translate(2px,-2px);}
+.home-contact-method:focus-visible{outline:2px solid var(--green-deep);outline-offset:5px;}
+@media(max-width:540px){.home-contact-method{gap:12px;padding:17px 0;}.contact-method-copy strong{font-size:14px;}}

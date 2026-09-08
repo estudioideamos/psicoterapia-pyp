@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/vendor/intl-tel-input/css/intlTelInput.css">
-<link rel="stylesheet" href="assets/css/style.css?v=20260908-brand-icons">
+<link rel="stylesheet" href="assets/css/style.css?v=20260908-contact-details">
 
 <script type="application/ld+json">
 {
@@ -184,7 +184,21 @@
 <section class="section-y bg-paper-deep" id="formulario"><span class="home-watermark" aria-hidden="true"></span>
   <div class="container intro home-contact">
     <div><p class="eyebrow reveal">Contacto</p><h2 class="reveal">Contactanos</h2><p class="reveal">Complete el formulario con sus datos de contacto y en breve nos estaremos comunicando con usted.</p>
-      <div id="formSuccess" class="form-success" role="status" hidden>Gracias por escribirnos. Recibimos tu mensaje.</div>
+            <div class="home-contact-methods">
+        <a class="home-contact-method" href="https://wa.me/5491151489394" target="_blank" rel="noopener">
+          <span class="contact-method-icon"><img src="assets/img/platform-whatsapp.svg" alt="" width="24" height="24"></span>
+          <span class="contact-method-copy"><span class="contact-method-label">Hablemos por WhatsApp</span><strong>+54 911 5148 9394</strong></span><span class="contact-method-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-contact-method" href="mailto:consultas@psicoterapiapyp.com">
+          <span class="contact-method-icon" data-icon="mail" aria-hidden="true"></span>
+          <span class="contact-method-copy"><span class="contact-method-label">Escribinos</span><strong>consultas@psicoterapiapyp.com</strong></span><span class="contact-method-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="home-contact-method" href="https://calendly.com/psicoterapiapyp" target="_blank" rel="noopener">
+          <span class="contact-method-icon" data-icon="calendar" aria-hidden="true"></span>
+          <span class="contact-method-copy"><span class="contact-method-label">Si estás en el exterior</span><strong>Programá tu primera cita</strong></span><span class="contact-method-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+<div id="formSuccess" class="form-success" role="status" hidden>Gracias por escribirnos. Recibimos tu mensaje.</div>
     </div>
     <form class="contact-form contact-form-premium reveal" action="https://formsubmit.co/consultas@psicoterapiapyp.com" method="POST" id="contactForm">
           <input type="hidden" name="_subject" value="Nueva consulta desde psicoterapiapyp.com">
@@ -202,7 +216,7 @@
           </div>
           <div class="field">
             <label for="f-telefono">Teléfono <span>(opcional)</span></label>
-            <input type="tel" id="f-telefono" name="Teléfono" autocomplete="tel" placeholder="+54 11 1234 5678">
+            <input type="tel" id="f-telefono" name="Teléfono" autocomplete="tel">
           </div>
           <div class="field field-wide"><label for="f-mensaje">Mensaje</label>
             <textarea id="f-mensaje" name="Mensaje" rows="3" required placeholder="Contanos brevemente tu motivo de consulta"></textarea>
