@@ -21,6 +21,22 @@ function stepsPathSVG(){
 document.querySelectorAll('[data-mobius="steps"]').forEach(el => el.innerHTML = stepsPathSVG());
 document.querySelectorAll('[data-loop-icon]').forEach(el => el.innerHTML = loopIconSVG());
 
+/* Set de íconos propios (línea, trazo redondeado) — misma familia visual que el loop */
+const ICONS = {
+  online: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M43 36 L68 50 L43 64 Z" fill="currentColor"/>',
+  presencial: '<path d="M50 16 C64 16 75 27 75 41 C75 58 50 84 50 84 C50 84 25 58 25 41 C25 27 36 16 50 16 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><circle cx="50" cy="41" r="10" stroke="currentColor" stroke-width="4" fill="none"/>',
+  exterior: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M17 50 H83 M50 17 C61 28 61 72 50 83 C39 72 39 28 50 17 Z" stroke="currentColor" stroke-width="4" fill="none"/>',
+  calendar: '<rect x="18" y="24" width="64" height="58" rx="9" stroke="currentColor" stroke-width="4" fill="none"/><path d="M18 42 H82 M34 16 V30 M66 16 V30" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>',
+  clock: '<circle cx="50" cy="50" r="33" stroke="currentColor" stroke-width="4" fill="none"/><path d="M50 31 V50 L64 59" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>',
+  chat: '<path d="M50 18 C30 18 16 31 16 48 C16 57 20 64 26 70 L22 83 L37 77 C41 79 45 80 50 80 C70 80 84 67 84 50 C84 33 70 18 50 18 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/>',
+  mail: '<rect x="15" y="27" width="70" height="46" rx="6" stroke="currentColor" stroke-width="4" fill="none"/><path d="M18 31 L50 54 L82 31" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  write: '<path d="M20 80 L29 78 L66 41 C69 38 69 33 66 30 C63 27 58 27 55 30 L18 67 L16 76 C15 79 17 81 20 80 Z" stroke="currentColor" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M53 32 L64 43" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'
+};
+function iconSVG(name, cls){
+  return `<svg class="feature-icon ${cls||''}" viewBox="0 0 100 100" fill="none" aria-hidden="true">${ICONS[name]||''}</svg>`;
+}
+document.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = iconSVG(el.getAttribute('data-icon')));
+
 const grain = document.createElement('div');
 grain.className = 'grain';
 grain.setAttribute('aria-hidden', 'true');
@@ -113,6 +129,25 @@ function observeReveal(selector, className){
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add(className); io.unobserve(e.target); } });
   }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
   els.forEach(el => io.observe(el));
+
+  // red de seguridad: si por lo que sea el IntersectionObserver no dispara
+  // (extensiones, navegadores atípicos, pestaña recién visible), revisamos
+  // manualmente por posición en cada scroll/resize para que el contenido
+  // nunca quede invisible.
+  let ticking = false;
+  const manualCheck = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    els.forEach(el => {
+      if(el.classList.contains(className)) return;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.92 && r.bottom > 0) el.classList.add(className);
+    });
+  };
+  const onScrollOrResize = () => { if(!ticking){ ticking = true; requestAnimationFrame(manualCheck); } };
+  window.addEventListener('scroll', onScrollOrResize, { passive: true });
+  window.addEventListener('resize', onScrollOrResize);
+  manualCheck();
 }
 observeReveal('.reveal', 'is-ready');
 observeReveal('.img-reveal', 'is-ready');
@@ -194,13 +229,28 @@ if(!(reduceMotion || typeof gsap === 'undefined')){
   });
 
   // parallax muy leve de las imágenes de fondo por sección
-  document.querySelectorAll('.bg-photo img').forEach(img => {
+  document.querySelectorAll('.bg-photo img, .bg-photo video').forEach(img => {
     gsap.to(img, {
       yPercent: 8, ease: 'none',
       scrollTrigger: { trigger: img.closest('section, .mode-card--lead'), start: 'top bottom', end: 'bottom top', scrub: true }
     });
   });
 }
+
+/* ---------------------------------------------------------
+   9b) Video inmersivo: reproducir al hacer clic en el botón de play
+--------------------------------------------------------- */
+document.querySelectorAll('.video-break').forEach(block => {
+  const trigger = block.querySelector('.play-trigger');
+  const video = block.querySelector('video');
+  if(!trigger || !video) return;
+  trigger.addEventListener('click', () => {
+    block.classList.add('is-playing');
+    video.muted = false;
+    video.controls = true;
+    video.play();
+  });
+});
 
 /* ---------------------------------------------------------
    10) Carrusel de testimonios (scroll nativo + botones)

@@ -87,13 +87,15 @@
   <!-- HERO -->
   <section class="hero on-dark">
     <div class="bg-photo" aria-hidden="true">
-      <picture><source srcset="assets/img/mobius-hero.webp" type="image/webp"><img src="assets/img/mobius-hero.jpg" alt="" width="1920" height="1080" fetchpriority="high"></picture>
+      <video autoplay muted loop playsinline poster="assets/img/photo-hero.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
     </div>
     <span class="cursor-glow" aria-hidden="true"></span>
     <div class="hero-content container">
       <p class="eyebrow">Psicoterapia P&amp;P</p>
-      <h1 data-split-lines>Un espacio para poner en palabras.</h1>
-      <p class="lede" data-fade-up>Terapia psicológica online y presencial con el Lic. Hernán Cassisi — psicoterapia psicoanalítica para adultos, con más de once años de trayectoria.</p>
+      <h1 data-split-lines>Hablá con un psicólogo a través de videollamada, desde donde estés</h1>
+      <p class="lede" data-fade-up>Con total comodidad, seguridad y privacidad. Terapia con el Lic. Hernán Cassisi — psicoterapia psicoanalítica, más de once años de trayectoria.</p>
       <div class="hero-ctas" data-fade-up>
         <a href="contacto.html" class="btn btn--primary">Contactanos
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -111,21 +113,34 @@
     </div>
   </section>
 
+  <!-- MANIFIESTO -->
+  <section class="manifesto">
+    <div class="container">
+      <p class="manifesto-line reveal">“Un espacio para poner en palabras.”</p>
+    </div>
+  </section>
+
   <!-- PRESENTACIÓN -->
   <section class="section-y">
     <div class="container">
-      <p class="eyebrow reveal">Quiénes somos</p>
       <div class="intro">
-        <div class="img-reveal intro-media reveal">
-          <picture><source srcset="assets/img/mobius-intro.webp" type="image/webp"><img src="assets/img/mobius-intro.jpg" alt="" width="1400" height="933" loading="lazy"></picture>
+        <div class="about-media reveal">
+          <div class="img-reveal main">
+            <picture><source srcset="assets/img/photo-window.webp" type="image/webp"><img src="assets/img/photo-window.jpg" alt="" loading="lazy"></picture>
+          </div>
+          <div class="img-reveal accent">
+            <picture><source srcset="assets/img/photo-notebook.webp" type="image/webp"><img src="assets/img/photo-notebook.jpg" alt="" loading="lazy"></picture>
+          </div>
         </div>
         <div>
-          <blockquote class="intro-quote reveal">
+          <p class="eyebrow reveal">Tratamiento psicológico online</p>
+          <h2 class="reveal" style="max-width:16ch;">Un espacio seguro, cálido y a tu medida</h2>
+          <p class="reveal" style="max-width:56ch;">Comenzar una terapia psicológica es un gran paso. En Psicoterapia P&amp;P buscamos brindarte un espacio seguro y personalizado para que puedas procesar los motivos que te llevaron a comenzar tratamiento.</p>
+          <blockquote class="intro-quote reveal" style="margin-top:24px; font-size:1.15rem;">
             “Me gustaría que podamos tener un espacio de encuentro basado en la palabra y la escucha.”
             <cite>Lic. Hernán Cassisi — fundador de Psicoterapia P&amp;P</cite>
           </blockquote>
-          <p class="reveal" style="margin-top:28px; max-width:56ch;">Somos un equipo de profesionales de la psicología a cargo del Lic. Cassisi Hernán Reinaldo, referente principal y coordinador, con formación en psicoterapia psicoanalítica. Comprendemos que cada persona es única: por eso ofrecemos un enfoque pensado para tus necesidades, ya sea en la comodidad de la terapia online o en la cercanía de las sesiones presenciales.</p>
-          <a href="quienes-somos.html" class="btn--text reveal">Conocé más sobre el equipo</a>
+          <a href="quienes-somos.html" class="btn--text reveal" style="margin-top:20px; display:inline-block;">Conocé más sobre el equipo</a>
           <div class="intro-facts reveal">
             <div class="intro-fact">
               <strong><span data-count="11" data-prefix="+">0</span> años</strong>
@@ -150,24 +165,24 @@
       <h2 class="reveal" style="max-width:16ch;">Cerca, estés donde estés</h2>
       <div class="modes" style="margin-top:40px;">
         <article class="mode-card mode-card--lead reveal">
-          <div class="bg-photo" aria-hidden="true"><picture><source srcset="assets/img/mobius-hero.webp" type="image/webp"><img src="assets/img/mobius-hero.jpg" alt="" loading="lazy"></picture></div>
+          <div class="bg-photo" aria-hidden="true"><picture><source srcset="assets/img/photo-videocall.webp" type="image/webp"><img src="assets/img/photo-videocall.jpg" alt="" loading="lazy"></picture></div>
           <div>
-            <svg class="loop-icon" viewBox="0 0 100 50" fill="none" aria-hidden="true"><path d="M25,25 C25,10 42,10 50,25 C58,40 75,40 75,25 C75,10 58,10 50,25 C42,40 25,40 25,25 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+            <span data-icon="online"></span>
             <h3 style="margin-top:18px;">Terapia online</h3>
             <p>Sesiones a través de redes seguras como Zoom, Meet o WhatsApp, para que puedas empezar desde donde estés, con la misma comodidad y privacidad que una sesión presencial.</p>
           </div>
           <a href="contacto.html" class="btn--text" style="color:#fff;">Consultanos hoy</a>
         </article>
         <article class="mode-card reveal">
-          <svg class="loop-icon" viewBox="0 0 100 50" fill="none" aria-hidden="true"><path d="M25,25 C25,10 42,10 50,25 C58,40 75,40 75,25 C75,10 58,10 50,25 C42,40 25,40 25,25 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          <span data-icon="presencial"></span>
           <h3>Terapia presencial</h3>
           <p>Evaluamos junto a vos si la sesión presencial es la más conveniente para tu situación, caso por caso.</p>
         </article>
         <article class="mode-card reveal">
-          <svg class="loop-icon" viewBox="0 0 100 50" fill="none" aria-hidden="true"><path d="M25,25 C25,10 42,10 50,25 C58,40 75,40 75,25 C75,10 58,10 50,25 C42,40 25,40 25,25 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          <span data-icon="exterior"></span>
           <h3>Pacientes en el exterior</h3>
-          <p>Te proponemos un encuentro con terapeutas que manejan tu lengua materna. Programá tu cita inicial —de cortesía, en modalidad breve— desde Calendly.</p>
-          <a href="https://calendly.com/psicoterapiapyp" class="btn--text" target="_blank" rel="noopener">Programar cita</a>
+          <p>¿Cómo iniciar tratamiento fuera de Argentina? Completá nuestro formulario de Calendly: la primera entrevista es de cortesía, en modalidad breve, para conocerte antes de comenzar.</p>
+          <a href="https://calendly.com/psicoterapiapyp" class="btn--text" target="_blank" rel="noopener">Programá tu cita aquí</a>
         </article>
       </div>
     </div>
@@ -183,7 +198,7 @@
           <p class="reveal" style="max-width:60ch;">La terapia es un proceso personalizado: los beneficios se manifiestan gradualmente, y la relación de confianza con el terapeuta es clave para lograr resultados positivos.</p>
         </div>
         <div class="img-reveal reveal" style="aspect-ratio: 3/4;">
-          <picture><source srcset="assets/img/mobius-modalidades.webp" type="image/webp"><img src="assets/img/mobius-modalidades.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="assets/img/photo-stilllife.webp" type="image/webp"><img src="assets/img/photo-stilllife.jpg" alt="" loading="lazy"></picture>
         </div>
       </div>
 
@@ -229,10 +244,10 @@
     </div>
   </section>
 
-  <!-- MOMENTO INMERSIVO -->
+  <!-- MOMENTO INMERSIVO: CIFRA -->
   <section class="stat-break on-dark">
     <div class="bg-photo" aria-hidden="true">
-      <picture><source srcset="assets/img/mobius-steps.webp" type="image/webp"><img src="assets/img/mobius-steps.jpg" alt="" loading="lazy"></picture>
+      <picture><source srcset="assets/img/photo-walking.webp" type="image/webp"><img src="assets/img/photo-walking.jpg" alt="" loading="lazy"></picture>
     </div>
     <div class="container">
       <p class="eyebrow reveal">Confianza</p>
@@ -249,26 +264,43 @@
       <h2 class="reveal" style="max-width:18ch;">Un recorrido pensado para vos</h2>
       <div class="steps-grid" style="margin-top:56px;">
         <div class="step reveal">
+          <span data-icon="write" class="feature-icon"></span>
           <span class="step-num">01</span>
           <h3>Escribinos</h3>
           <p>Contanos tu motivo de consulta por WhatsApp o a través del formulario de contacto.</p>
         </div>
         <div class="step reveal">
+          <span data-icon="chat" class="feature-icon"></span>
           <span class="step-num">02</span>
           <h3>Primer contacto</h3>
           <p>Te respondemos de forma personal —sin bots ni respuestas automáticas— para coordinar los próximos pasos.</p>
         </div>
         <div class="step reveal">
+          <span data-icon="calendar" class="feature-icon"></span>
           <span class="step-num">03</span>
           <h3>Primera entrevista</h3>
           <p>Presencial u online, según tu caso. Si vivís en el exterior, programás tu cita inicial en Calendly.</p>
         </div>
         <div class="step reveal">
+          <span data-icon="clock" class="feature-icon"></span>
           <span class="step-num">04</span>
           <h3>Inicio del proceso</h3>
           <p>Sesiones semanales de 45 a 60 minutos, con la frecuencia que definan juntos.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- VIDEO INMERSIVO -->
+  <section class="video-break on-dark">
+    <div class="frame">
+      <video muted loop playsinline poster="assets/img/photo-conversation.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <button class="play-trigger" aria-label="Reproducir video">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <p class="vb-caption">Un espacio para poner en palabras</p>
     </div>
   </section>
 
@@ -291,27 +323,31 @@
 
       <div class="testi-track" tabindex="0" aria-label="Reseñas de pacientes">
         <article class="testi-card">
+          <p>“Excelente experiencia. Florencia fue muy amable, profesional y generó un ambiente de confianza durante toda la evaluación. Todo estuvo muy bien organizado.”</p>
+          <div class="who"><strong>Diego Tronzano</strong><span>hace 2 meses</span></div>
+        </article>
+        <article class="testi-card">
           <p>“Hace dos años y medio que tengo terapia mediante la modalidad virtual (...) hoy no lo cambio, me adapté muy bien y el Dr. Hernán Cassisi es un excelente profesional.”</p>
           <div class="who"><strong>jorgelina tenaglia</strong><span>hace 2 meses</span></div>
         </article>
         <article class="testi-card">
           <p>“Encontré quien me deje hablar, expresar, y con simples preguntas encausar mis propias respuestas a lo que siento y vivo. La modalidad online es súper satisfactoria.”</p>
-          <div class="who"><strong>Elisabet Martinez</strong><span>hace 2 meses</span></div>
-        </article>
-        <article class="testi-card">
-          <p>“Tenía mis dudas sobre la modalidad online, pero la verdad muy bien. Me siento muy cómoda y acompañada, y tiene mucha flexibilidad con los horarios.”</p>
-          <div class="who"><strong>Daiana</strong><span>hace 3 meses</span></div>
+          <div class="who"><strong>Elisabet Martinez</strong><span>hace 3 meses</span></div>
         </article>
         <article class="testi-card">
           <p>“Su forma de trabajar es clara, empática y profesional, lo que genera un espacio de confianza incluso siendo terapia online.”</p>
-          <div class="who"><strong>Favio Landolfi</strong><span>hace 5 meses</span></div>
+          <div class="who"><strong>Favio Landolfi</strong><span>hace 6 meses</span></div>
         </article>
         <article class="testi-card">
           <p>“Vivo en España y con su cercanía hizo que no notara esa distancia. Si estás pensando en comenzar terapia, es la persona indicada.”</p>
           <div class="who"><strong>Nico</strong><span>hace 1 año</span></div>
         </article>
         <article class="testi-card">
-          <p>“Particularmente mi experiencia es virtual porque vivo en Córdoba, pero el espacio que se crea es de absoluta confianza y seguridad para el paciente.”</p>
+          <p>“Vivo en Estados Unidos. Estaba pasando por momentos difíciles y empecé a hablar con él. Da consejos y sobre todo tiene mucha paciencia y sabe entender por lo que uno está pasando.”</p>
+          <div class="who"><strong>Kathy Barrientos</strong><span>hace 1 año</span></div>
+        </article>
+        <article class="testi-card">
+          <p>“Particularmente mi experiencia es virtual porque vivo en Córdoba, pero el espacio que se crea es de absoluta confianza y seguridad para el paciente. Recomendable 100%.”</p>
           <div class="who"><strong>Paula Carrera</strong><span>hace 3 años</span></div>
         </article>
       </div>
@@ -350,8 +386,8 @@
 
   <!-- CONTACTO -->
   <section class="section-y bg-ink on-dark" id="contacto-home" style="position:relative; overflow:hidden;">
-    <div class="bg-photo" aria-hidden="true" style="opacity:.5;">
-      <picture><source srcset="assets/img/mobius-hero.webp" type="image/webp"><img src="assets/img/mobius-hero.jpg" alt="" loading="lazy"></picture>
+    <div class="bg-photo" aria-hidden="true" style="opacity:.55;">
+      <picture><source srcset="assets/img/photo-hero.webp" type="image/webp"><img src="assets/img/photo-hero.jpg" alt="" loading="lazy"></picture>
     </div>
     <div class="container" style="position:relative; z-index:2;">
       <p class="eyebrow reveal">Contacto</p>
@@ -360,17 +396,17 @@
 
       <div class="contact-grid" style="margin-top:40px;">
         <a class="contact-card reveal" href="https://wa.me/5491151489394" target="_blank" rel="noopener">
-          <span data-loop-icon></span>
+          <span data-icon="chat" class="feature-icon"></span>
           <strong>WhatsApp</strong>
           <span>+54 911 5148 9394</span>
         </a>
         <a class="contact-card reveal" href="mailto:consultas@psicoterapiapyp.com">
-          <span data-loop-icon></span>
+          <span data-icon="mail" class="feature-icon"></span>
           <strong>Email</strong>
           <span>consultas@psicoterapiapyp.com</span>
         </a>
         <a class="contact-card reveal" href="https://calendly.com/psicoterapiapyp" target="_blank" rel="noopener">
-          <span data-loop-icon></span>
+          <span data-icon="calendar" class="feature-icon"></span>
           <strong>Cita desde el exterior</strong>
           <span>Reservá en Calendly</span>
         </a>
