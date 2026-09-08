@@ -187,7 +187,7 @@ section{ position: relative; }
 .site-header.is-scrolled .container{ box-shadow: 0 10px 24px -14px rgba(20,21,15,.3); padding-block: 9px; }
 
 .logo{ display:flex; align-items:center; flex:none; justify-self:start; }
-.logo img{ height: 26px; width:auto; }
+.logo img{ height: 40px; width:auto; }
 
 .nav-primary{ display:flex; align-items:center; justify-content:center; gap: clamp(16px, 2vw, 34px); justify-self:center; }
 .nav-primary a{
@@ -202,7 +202,7 @@ section{ position: relative; }
 .nav-primary a[aria-current="page"]{ color: var(--green-deep); }
 
 .header-cta{ display:flex; align-items:center; gap: 22px; justify-self:end; }
-.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 999px; }
+.header-cta .btn--primary{ padding: .75em 1.5em; border-radius: 10px; }
 .header-cta .btn--ghost{
   background:none; border:0; color: var(--ink); padding:0;
   font-size:.85rem; font-weight:600; letter-spacing:.02em; text-transform:none;
