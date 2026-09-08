@@ -1076,3 +1076,10 @@ section{ position: relative; }
  .home-original>section::after{opacity:1 !important; transform:none !important;}
  .home-original .reveal{transition-delay:0ms;}
 }
+/* Keep the benefits introduction alongside the scrolling list. */
+@supports (overflow:clip){
+ body:has(.home-original){overflow-x:clip;}
+}
+@media(min-width:861px){
+ .home-benefits-intro{position:sticky; top:110px; align-self:start;}
+}
