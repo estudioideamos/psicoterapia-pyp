@@ -1146,3 +1146,14 @@ section{ position: relative; }
  .home-original #beneficios .home-watermark::before{left:-42%; bottom:12%; opacity:.04;}
  .home-original #formulario .home-watermark::before{left:-35%; top:0; opacity:.04;}
 }
+/* Editorial columns remain alongside their longer companion on desktop. */
+@media(min-width:861px){
+ .home-original .home-exterior{overflow:clip;}
+ .home-exterior .intro,.home-offer,.home-contact{align-items:start;}
+ .home-exterior .home-section-copy,
+ .home-offer>div:first-child,
+ .home-contact>div:first-child,
+ .home-benefits-intro{
+   position:sticky; top:var(--column-top,110px); align-self:start;
+ }
+}

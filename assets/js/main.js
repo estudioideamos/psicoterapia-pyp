@@ -409,3 +409,22 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
  setup();
  preference.addEventListener('change',setup);
 })();
+// Keep tall sticky copy readable on shorter screens and at enlarged text sizes.
+(() => {
+ const columns = document.querySelectorAll('.home-exterior .home-section-copy,.home-offer>div:first-child,.home-contact>div:first-child,.home-benefits-intro');
+ if (!columns.length) return;
+ const desktop = matchMedia('(min-width:861px)');
+ const update = () => columns.forEach(column => {
+   if (!desktop.matches) { column.style.removeProperty('--column-top'); return; }
+   const top = Math.min(110, innerHeight - column.getBoundingClientRect().height - 24);
+   column.style.setProperty('--column-top', top + 'px');
+ });
+ if ('ResizeObserver' in window) {
+   const observer = new ResizeObserver(update);
+   columns.forEach(column => observer.observe(column));
+ }
+ window.addEventListener('resize', update, {passive:true});
+ desktop.addEventListener('change', update);
+ if (document.fonts) document.fonts.ready.then(update);
+ update();
+})();
