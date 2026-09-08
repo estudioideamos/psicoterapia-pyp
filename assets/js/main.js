@@ -427,7 +427,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
 })();
 // Keep tall sticky copy readable on shorter screens and at enlarged text sizes.
 (() => {
- const columns = document.querySelectorAll('.home-exterior .home-section-copy,.home-offer>div:first-child,.home-contact>div:first-child,.home-benefits-intro,.faq-intro,.services-intro');
+ const columns = document.querySelectorAll('#tratamiento .home-section-copy,.home-exterior .home-section-copy,.home-offer>div:first-child,.home-contact>div:first-child,.home-benefits-intro,.faq-intro,.services-intro');
  if (!columns.length) return;
  const desktop = matchMedia('(min-width:861px)');
  const update = () => columns.forEach(column => {
