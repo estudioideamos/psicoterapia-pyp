@@ -1260,9 +1260,9 @@ section{ position: relative; }
 .home-original .platform-heading .eyebrow::after{content:"";display:block;width:28px;height:1px;background:currentColor;flex:none;}
 
 /* An editorial ribbon connecting each page to the footer. */
-.editorial-marquee{overflow:hidden;background:#a9bc86;color:#172016;border-top:1px solid #17201620;border-bottom:1px solid #17201620;padding:clamp(24px,3.5vw,48px) 0;}
+.editorial-marquee{overflow:hidden;background:#a9bc86;color:#172016;border-top:1px solid #17201620;border-bottom:1px solid #17201620;padding:clamp(18px,2.5vw,34px) 0;}
 .editorial-marquee-track{display:flex;width:max-content;animation:editorial-drift 38s linear infinite;}
-.editorial-marquee-group{display:flex;align-items:center;flex:none;gap:clamp(32px,5vw,80px);padding-right:clamp(32px,5vw,80px);white-space:nowrap;font-family:var(--font-display);font-size:clamp(36px,5.5vw,82px);font-weight:400;line-height:1.15;letter-spacing:-.035em;}
+.editorial-marquee-group{display:flex;align-items:center;flex:none;gap:clamp(32px,5vw,80px);padding-right:clamp(32px,5vw,80px);white-space:nowrap;font-family:var(--font-display);font-size:clamp(30px,4.3vw,64px);font-weight:400;line-height:1.15;letter-spacing:-.035em;}
 .editorial-marquee-group em{font-weight:400;}
 .editorial-marquee-group .marquee-star{font-family:serif;font-size:.48em;font-weight:400;opacity:.65;}
 .editorial-marquee:hover .editorial-marquee-track{animation-play-state:paused;}
