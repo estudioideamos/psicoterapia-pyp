@@ -1225,3 +1225,6 @@ section{ position: relative; }
 @supports(overflow:clip){body:has(.faq-columns){overflow-x:clip;}}
 @media(min-width:861px){.faq-intro{position:sticky; top:var(--column-top,110px); align-self:start;}}
 @media(max-width:860px){.faq-columns{grid-template-columns:1fr;}.faq-intro p{max-width:65ch;}}
+.platform-symbol.platform-symbol-brand{background:transparent; border-radius:0;}
+.platform-symbol-brand img{width:42px; height:42px; object-fit:contain;}
+@media(max-width:600px){.platform-symbol-brand img{width:36px;height:36px;}}
