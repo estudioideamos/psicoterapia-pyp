@@ -1639,3 +1639,4 @@ animation:sage-perimeter 7s linear infinite;
 @media(max-width:767px){.hero h1,.page-hero h1{font-size:3.2rem;line-height:1;}}
 .editorial-statement h2{color:#1c1c1c;}.editorial-statement h2 em{color:#4c6531;}
 .logo img{height:40px;width:auto;}@media(max-width:767px){.logo img{height:38px;}}@media(max-width:359px){.logo img{height:34px;}}
+.site-header .logo{width:112px;min-width:112px;}.site-header .logo img{display:block;width:100%;height:auto;aspect-ratio:912/327;object-fit:contain;flex-shrink:0;}@media(max-width:767px){.site-header .logo{width:106px;min-width:106px;}.site-header .container{gap:12px;}}@media(max-width:359px){.site-header .logo{width:94px;min-width:94px;}.site-header .container{gap:8px;padding-inline:10px;}.header-cta .btn--primary{padding-inline:12px;}}
