@@ -121,19 +121,29 @@ window.addEventListener('scroll', onScroll, { passive: true });
 const navToggle = document.querySelector('.nav-toggle');
 const mobilePanel = document.querySelector('.mobile-panel');
 if(navToggle && mobilePanel){
-  navToggle.addEventListener('click', () => {
-    const open = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!open));
-    mobilePanel.classList.toggle('is-open', !open);
-    document.body.style.overflow = !open ? 'hidden' : '';
+  const setMenu=open=>{
+    navToggle.setAttribute('aria-expanded',String(open));
+    navToggle.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+    mobilePanel.classList.toggle('is-open',open);
+    mobilePanel.inert=!open;
+    document.body.style.overflow=open?'hidden':'';
+    if(!open)navToggle.focus({preventScroll:true});
+  };
+  mobilePanel.inert=true;
+  navToggle.addEventListener('click',()=>setMenu(navToggle.getAttribute('aria-expanded')!=='true'));
+  mobilePanel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',event=>{
+    if(navToggle.getAttribute('aria-expanded')!=='true')return;
+    if(event.key==='Escape')setMenu(false);
+    if(event.key==='Tab'){
+      const links=[navToggle,...mobilePanel.querySelectorAll('a[href]')];
+      const first=links[0],last=links[links.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    }
   });
-  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navToggle.setAttribute('aria-expanded', 'false');
-    mobilePanel.classList.remove('is-open');
-    document.body.style.overflow = '';
-  }));
+  matchMedia('(min-width:901px)').addEventListener('change',e=>{if(e.matches)setMenu(false);});
 }
-
 /* ---------------------------------------------------------
    3) Índice editorial de motivos de consulta (acordeón simple)
 --------------------------------------------------------- */
@@ -508,4 +518,14 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
    else button.removeAttribute('aria-expanded');
  });
  mobile.addEventListener('change',sync);sync();
+})();
+// Native smooth return to top.
+(() => {
+ const button=document.createElement('button');
+ button.className='back-to-top';button.type='button';button.setAttribute('aria-label','Volver arriba');
+ button.innerHTML='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ document.body.append(button);
+ const update=()=>{const visible=scrollY>500;button.classList.toggle('is-visible',visible);button.tabIndex=visible?0:-1;};
+ window.addEventListener('scroll',update,{passive:true});update();
+ button.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 })();
