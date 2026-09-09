@@ -1681,3 +1681,41 @@ html[data-theme=dark] .contact-form-premium{background:#263127;}
 html[data-theme=dark] .contact-form-premium .field input,
 html[data-theme=dark] .contact-form-premium .field textarea{background:#182019;color:#edf0e7;border-color:#a9c08455;}
 html[data-theme=dark] .reviews-controls button{background:#263127;color:#dce5d0;}
+
+/* Complete dark surfaces and explicit text contrast, including interactive states. */
+html[data-theme=dark] main .home-offer{color:#d1d7ca;}
+html[data-theme=dark] main .home-offer-lead,
+html[data-theme=dark] main .contact-method-copy strong,
+html[data-theme=dark] main .team-facts strong,
+html[data-theme=dark] main .contact-form-premium .field label{color:#edf0e7;}
+html[data-theme=dark] main .home-benefit,
+html[data-theme=dark] main .home-benefit:not([open]):hover,
+html[data-theme=dark] main .services-editorial .benefit-item,
+html[data-theme=dark] main .services-editorial .benefit-item:hover{background:#263127;border-color:#a9c08440;}
+html[data-theme=dark] main .home-benefit[open],
+html[data-theme=dark] main .faq-item[open]{background:#182319;}
+html[data-theme=dark] main .home-about-link,
+html[data-theme=dark] main .home-about-link h2,
+html[data-theme=dark] main .home-about-link .btn--text{color:#182017;}
+html[data-theme=dark] .skip-link{color:#182017;}
+html[data-theme=dark] main .contact-method-icon{background:#a9c08418;border-color:#a9c08440;}
+html[data-theme=dark] .phone-error{color:#ffb4a8;}
+html[data-theme=dark] .contact-form-premium .iti{--iti-border-color:#a9c08440;--iti-hover-color:#344332;--iti-dropdown-bg:#263127;--iti-text-gray:#d1d7ca;}
+html[data-theme=dark] .iti__dropdown-content{background:#263127;color:#edf0e7;}
+html[data-theme=dark] .iti__country-list,html[data-theme=dark] .iti__search-input{background:#263127;color:#edf0e7;}
+html[data-theme=dark] .nav-toggle{border-color:#a9c08466;}
+html[data-theme=dark] .nav-toggle span{background:#edf0e7;}
+html[data-theme=dark] .reviews-controls button:hover{background:#b2c98f;color:#182017;}
+html[data-theme=dark] .reviews-google{color:#edf0e7;}
+html[data-theme=dark] .team-facts .team-years{color:#edf0e7;}
+
+.theme-toggle{position:relative;display:flex;align-items:center;justify-content:space-between;width:64px;flex-basis:64px;height:34px;padding:7px;border-radius:20px;background:#e5eadb;border-color:#8a9e7166;color:#4c6531;}
+.theme-toggle::before{content:"";position:absolute;left:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#fffdf6;box-shadow:0 2px 5px #17201630;transition:transform .25s ease;}
+.theme-toggle svg{position:relative;width:16px;height:16px;z-index:1;}
+.theme-toggle .theme-sun{display:block;order:-1;}
+html[data-theme=dark] .theme-toggle{background:#34452e;color:#d8e7bf;border-color:#a9c08480;}
+html[data-theme=dark] .theme-toggle .theme-moon{display:block;color:#1b2817;}
+html[data-theme=dark] .theme-toggle::before{transform:translateX(30px);background:#c0d79e;}
+@media(max-width:359px){.site-header .container{padding-inline:8px;gap:4px;}.header-cta{gap:4px;}}
+@media(prefers-reduced-motion:reduce){.theme-toggle::before{transition:none;}}
+html[data-theme=dark] .hero-badge,html[data-theme=dark] .hero-badge strong{color:#182017;}

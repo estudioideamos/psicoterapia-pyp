@@ -7,7 +7,7 @@
   current=theme;root.dataset.theme=theme;
   document.querySelectorAll('.theme-toggle').forEach(button=>{
    const label=theme==='dark'?'Activar modo claro':'Activar modo oscuro';
-   button.setAttribute('aria-label',label);button.title=label;
+   button.setAttribute('role','switch');button.setAttribute('aria-label','Modo oscuro');button.setAttribute('aria-checked',String(theme==='dark'));button.title=label;
   });
  };
  document.addEventListener('DOMContentLoaded',()=>{
