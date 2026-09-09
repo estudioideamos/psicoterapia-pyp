@@ -1,0 +1,7 @@
+.contact-form .contact-field-error {color:#a52f2f;font-size:.82rem;line-height:1.5;margin:8px 0 0;text-align:left}
+.contact-form .contact-field-hint {color:inherit;opacity:.8;font-size:.75rem;margin:8px 0 0;text-align:left}
+.contact-form [aria-invalid="true"] {border-color:#a52f2f}
+.contact-form .contact-send-status {grid-column:1/-1;line-height:1.6;padding:16px;border:1px solid currentColor;border-radius:12px}
+.contact-form button:disabled {opacity:.65;cursor:wait}
+[data-theme="dark"] .contact-form .contact-field-error {color:#ffb5ad}
+[data-theme="dark"] .contact-form [aria-invalid="true"] {border-color:#ffb5ad}

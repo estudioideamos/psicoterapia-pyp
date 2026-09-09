@@ -5,6 +5,11 @@ header('X-Content-Type-Options: nosniff');
 header('Content-Type: text/html; charset=UTF-8');
 function stopRequest(int $status, string $message): void {
     http_response_code($status);
+    if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode(['ok' => false, 'message' => $message]);
+        exit;
+    }
     echo '<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contacto — P&amp;P</title><body style="background:#f7f5ef;color:#14150f;font:18px/1.6 system-ui;max-width:600px;margin:12vh auto;padding:24px"><h1>No pudimos enviar el mensaje</h1><p>'.htmlspecialchars($message, ENT_QUOTES, 'UTF-8').'</p><p><a href="javascript:history.back()">Volver al formulario</a></p><a href="mailto:consultas@psicoterapiapyp.com">consultas@psicoterapiapyp.com</a></body></html>';
     exit;
 }
@@ -63,6 +68,11 @@ try {
     error_log('PYP contact: local mail transport unavailable');
 }
 if (!$sent) stopRequest(503, 'El hosting no pudo procesar el envío. Intentá más tarde o escribinos por email.');
+if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(['ok' => true]);
+    exit;
+}
 $target = field('pagina', 20) === 'inicio' ? '/?enviado=1#formulario' : '/contacto.html?enviado=1#formulario';
 header('Location: '.$target, true, 303);
 exit;

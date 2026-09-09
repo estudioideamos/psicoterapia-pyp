@@ -36,6 +36,7 @@
  }else load().catch(()=>{});
 
  form.addEventListener('submit',event=>{
+   if(!input.value.trim()){full.value='';country.value='';return;}
    if(!instance){
      event.preventDefault();
      load().then(()=>form.requestSubmit()).catch(()=>{error.hidden=false;error.textContent='No pudimos cargar el selector. Recargá la página o escribinos por WhatsApp.';});
