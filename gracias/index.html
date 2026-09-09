@@ -15,6 +15,17 @@
 .thanks-card h1 em{color:#789b4c}.thanks-card p{max-width:490px;margin:0 auto 28px;line-height:1.7}
 .thanks-card .btn{margin:12px auto 0}.thanks-label{color:#789b4c;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase}
 [data-theme="dark"] .thanks-logo{filter:grayscale(1) brightness(0) invert(1)}
+
+.thanks-page{position:relative;isolation:isolate;overflow:hidden;background:#10180f}
+.thanks-page::before{content:"";position:absolute;z-index:-2;inset:-4%;background:url("/assets/img/welcome-network.jpg") center/cover no-repeat;opacity:.8;animation:thanks-depth 24s ease-in-out infinite alternate;pointer-events:none}
+.thanks-page::after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at center,rgba(16,24,15,.1),rgba(10,17,12,.65));pointer-events:none}
+.thanks-card{background:rgba(247,245,239,.96);color:#14150f;border-color:rgba(178,201,143,.5);box-shadow:0 28px 90px rgba(0,0,0,.25);backdrop-filter:blur(8px)}
+.thanks-card h1 em,.thanks-label{color:#4c6531}
+[data-theme="dark"] .thanks-card{background:rgba(20,30,22,.95);color:#f7f5ef}
+[data-theme="dark"] .thanks-card h1 em,[data-theme="dark"] .thanks-label{color:#b2c98f}
+@keyframes thanks-depth{from{transform:scale(1)}to{transform:scale(1.045) translate3d(1%,0,0)}}
+@media(max-width:600px){.thanks-page{padding:28px 18px}.thanks-card{padding:36px 20px}.thanks-logo{margin-bottom:28px}.thanks-card h1{font-size:clamp(2.35rem,10vw,3.5rem)}}
+@media(prefers-reduced-motion:reduce){.thanks-page::before{animation:none}}
 </style></head><body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQ8T8ZLL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main class="thanks-page"><section class="thanks-card">
