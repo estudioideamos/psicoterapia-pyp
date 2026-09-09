@@ -73,6 +73,6 @@ if (strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false) {
     echo json_encode(['ok' => true]);
     exit;
 }
-$target = field('pagina', 20) === 'inicio' ? '/?enviado=1#formulario' : '/contacto.html?enviado=1#formulario';
+$target = '/gracias/';
 header('Location: '.$target, true, 303);
 exit;

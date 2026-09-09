@@ -5,3 +5,5 @@ deployment:
     - /bin/cp -R assets/. /home18/psicoterapiapyp/public_html/assets/
     - /bin/cp index.html quienes-somos.html servicios.html contacto.html preguntas-frecuentes.html favicon.ico enviar-consulta.php /home18/psicoterapiapyp/public_html/
     - /bin/bash scripts/deploy-redirects.sh
+    - /bin/mkdir -p /home18/psicoterapiapyp/public_html/gracias
+    - /bin/cp gracias/index.html /home18/psicoterapiapyp/public_html/gracias/index.html

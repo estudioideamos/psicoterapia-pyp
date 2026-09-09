@@ -66,8 +66,7 @@
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || 'No pudimos enviar el mensaje. Intentá nuevamente.');
       status.textContent = 'Gracias por escribirnos. Tu mensaje fue enviado.';
-      status.focus();
-      form.reset();
+      window.location.assign('/gracias/');
     } catch (error) {
       status.textContent = error instanceof SyntaxError || error instanceof TypeError
         ? 'No pudimos confirmar el envío. Conservamos tus datos; revisá tu conexión e intentá nuevamente.'
