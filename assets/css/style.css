@@ -1735,3 +1735,4 @@ html[data-theme=dark] .team-facts{background:transparent;}
 .compass-needle{transform-origin:40px 40px;animation:compass-orient 9s ease-in-out infinite;}
 @keyframes compass-orient{0%,100%{transform:rotate(25deg);}35%{transform:rotate(65deg);}65%{transform:rotate(12deg);}82%{transform:rotate(32deg);}}
 @media(prefers-reduced-motion:reduce){.compass-needle{animation:none;transform:rotate(25deg);}}
+.benefit-compass{width:88px;height:88px;flex-basis:88px;}.compass-face{fill:var(--paper);}.benefit-compass .compass-needle{transform-origin:50px 50px;}
