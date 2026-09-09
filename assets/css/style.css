@@ -1670,3 +1670,14 @@ html[data-theme=dark] .on-dark .btn--primary{background:#eef1e5;color:#182017;}
  .header-cta{gap:6px;}
  .site-header .container{gap:6px;}
 }
+html[data-theme=dark] .btn--primary{color:#f7f5ef;}
+html[data-theme=dark] .on-dark .btn--primary,html[data-theme=dark] .home-exterior .btn--primary{color:#182017;}
+html[data-theme=dark] .services-editorial{background:linear-gradient(135deg,#202a21,#182019);}
+html[data-theme=dark] .team-facts{background:#202a21;}
+html[data-theme=dark] .profile-editorial .profile-chapter,
+html[data-theme=dark] .services-editorial .benefit-item,
+html[data-theme=dark] .faq-premium .faq-item,
+html[data-theme=dark] .contact-form-premium{background:#263127;}
+html[data-theme=dark] .contact-form-premium .field input,
+html[data-theme=dark] .contact-form-premium .field textarea{background:#182019;color:#edf0e7;border-color:#a9c08455;}
+html[data-theme=dark] .reviews-controls button{background:#263127;color:#dce5d0;}
