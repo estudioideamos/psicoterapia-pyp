@@ -1727,3 +1727,4 @@ html[data-theme=dark] .home-exterior{
  border-top:1px solid #a9c08440;
  border-bottom:1px solid #a9c08430;
 }
+html[data-theme=dark] .team-facts{background:transparent;}
