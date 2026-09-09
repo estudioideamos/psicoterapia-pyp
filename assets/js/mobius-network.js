@@ -1,3 +1,4 @@
+import * as THREE from '../vendor/three/three.module.min.js';
 /* Psicoterapia P&P — red/malla de la cinta de Moebius, en vivo (WebGL/Three.js)
    Geometría paramétrica real de una banda de Moebius, renderizada como red de
    nodos y conexiones (no una foto ni un video): un objeto abstracto propio.
@@ -24,7 +25,7 @@
 
   const INK = 0x14150f;
   renderer.setClearColor(INK, 1);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, innerWidth < 768 ? 1.25 : 1.5));
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
@@ -35,7 +36,7 @@
   scene.add(group);
 
   /* ---------- geometría paramétrica de la cinta de Moebius ---------- */
-  const U = 140;               // vueltas alrededor del lazo
+  const U = innerWidth < 768 ? 90 : 140;               // vueltas alrededor del lazo
   const V = 14;                // segmentos a lo ancho de la banda
   const RADIUS = 2.3;
   const WIDTH = 0.95;

@@ -277,14 +277,10 @@ if(!reduceMotion){
 function scheduleMobius(){
   if(reduceMotion || !document.querySelector('[data-mobius-network]')) return;
   const load = () => {
-    const three = document.createElement('script');
-    three.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    three.onload = () => {
-      const network = document.createElement('script');
-      network.src = 'assets/js/mobius-network.js?v=20260908-performance';
-      document.body.appendChild(network);
-    };
-    document.body.appendChild(three);
+    const network=document.createElement('script');
+    network.type='module';
+    network.src='assets/js/mobius-network.js?v=20260909-security';
+    document.head.appendChild(network);
   };
   const schedule = () => {
     if('requestIdleCallback' in window) requestIdleCallback(load, {timeout:2500});
@@ -310,7 +306,7 @@ document.querySelectorAll('.video-break').forEach(block => {
 });
 
 /* ---------------------------------------------------------
-   10b) Formulario de contacto (FormSubmit): mensaje de éxito tras el redirect
+   10b) Formulario de contacto: compatibilidad con confirmaciones anteriores
 --------------------------------------------------------- */
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');

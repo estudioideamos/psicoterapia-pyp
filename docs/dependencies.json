@@ -1,0 +1,17 @@
+{
+  "checked": "2026-09-09",
+  "dependencies": {
+    "three": "0.186.0",
+    "intl-tel-input": "29.2.3"
+  },
+  "audit": "npm audit: 0 known vulnerabilities at review time, not an assurance of zero risk",
+  "sha256": {
+    "assets/vendor/intl-tel-input/LICENSE": "cf73c26f3430cdb778415da427dfec99303332d0ab691f1e43e024b9cb81e1be",
+    "assets/vendor/three/LICENSE": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+    "assets/vendor/three/three.module.min.js": "a2a8c880282891f23d8a8e35b04a08f10bb668e281da8e324abb919f60fe40ca",
+    "assets/vendor/intl-tel-input/css/intlTelInput.css": "d01af9670a4d358d7c84980cc17df2c5f35fdcc6ae40b5a2082ab3763480622b",
+    "assets/vendor/intl-tel-input/img/flags.webp": "ed164ab32687531059bf7fd23cca87b8ad1fe5fa7ab9b0dd974ad362716c086a",
+    "assets/vendor/intl-tel-input/img/flags@2x.webp": "c8b020b385c0e5fb025ce404f4d3ff4e94d002f18fc5c684fc2aaed7ac6ba00f",
+    "assets/vendor/intl-tel-input/js/intlTelInputWithUtils.min.js": "8280f2887ce8813b410d99fe6028fa768576b926d53892457092564dabd307fe"
+  }
+}
