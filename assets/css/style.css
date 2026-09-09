@@ -1549,8 +1549,8 @@ main .benefit-contact-row .btn--text{margin:0;}
 .back-to-top{position:fixed;right:24px;bottom:96px;width:46px;height:46px;border-radius:50%;background:var(--paper);color:var(--green-deep);border:1px solid #81936360;box-shadow:0 8px 24px #0002;z-index:90;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .25s,visibility .25s;}
 .back-to-top.is-visible{opacity:1;visibility:visible;transform:none;}
 .back-to-top svg{width:22px;height:22px;}
-.home-original>.hero{padding-bottom:140px;}
-.home-original>.hero::after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:130px;background:linear-gradient(0deg,var(--paper),transparent);pointer-events:none;z-index:3;}
+
+
 @media(max-width:900px){
 .mobile-panel{background:radial-gradient(ellipse at 90% 15%,#4c653155,transparent 60%),#141b12;padding:130px 26px 32px;justify-content:flex-start;gap:30px;overflow-y:auto;transform:translateY(-16px);opacity:0;visibility:hidden;transition:opacity .35s,transform .5s var(--ease),visibility .35s;}
 .mobile-panel.is-open{opacity:1;visibility:visible;transform:none;}
@@ -1570,5 +1570,23 @@ main .benefit-contact-row .btn--text{margin:0;}
 .nav-toggle[aria-expanded=true] span:nth-child(1){transform:rotate(45deg);}
 .nav-toggle[aria-expanded=true] span:nth-child(3){transform:rotate(-45deg);}
 }
-@media(max-width:700px){.back-to-top{right:17px;bottom:84px;width:44px;height:44px;}.home-original>.hero{padding-bottom:100px;}.home-original>.hero::after{height:90px;}}
+@media(max-width:700px){.back-to-top{right:17px;bottom:84px;width:44px;height:44px;}}
 @media(prefers-reduced-motion:reduce){.mobile-panel,.mobile-panel nav li,.back-to-top{transition:none;}}
+/* Soft travelling edge, exclusively on the existing sage CTA. */
+@property --sage-angle{syntax:"<angle>";inherits:false;initial-value:0deg;}
+.home-exterior .btn--primary{
+isolation:isolate;background:linear-gradient(125deg,#bfd29d,#a9c084 55%,#b7cc94);color:#182017;border-color:#b4cb8c;
+box-shadow:0 0 13px -7px #b8d67770;transition:box-shadow .4s,filter .4s;
+}
+.home-exterior .btn--primary::before{
+content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+background:conic-gradient(from var(--sage-angle),#8ba868,#b9d77b 25%,#6f9850 50%,#cbdc8d 75%,#edf3ba 82%,#8ba868 90%);
+-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+-webkit-mask-composite:xor;mask-composite:exclude;
+animation:sage-perimeter 7s linear infinite;
+}
+.home-exterior .btn--primary:hover{background:linear-gradient(125deg,#c6d9a4,#b2ca8c 55%,#bfd49a);color:#182017;border-color:#bdd68e;box-shadow:0 0 17px -5px #b8d67770;}
+.home-exterior .btn--primary .cta-arrow{display:inline-block;transition:transform .4s var(--ease);}
+.home-exterior .btn--primary:hover .cta-arrow{transform:translate(3px,-3px);}
+@keyframes sage-perimeter{to{--sage-angle:360deg;}}
+@media(prefers-reduced-motion:reduce){.home-exterior .btn--primary::before{animation:none;}.home-exterior .btn--primary .cta-arrow{transition:none;}.home-exterior .btn--primary:hover .cta-arrow{transform:none;}}
