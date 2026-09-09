@@ -1720,3 +1720,10 @@ html[data-theme=dark] .theme-toggle::before{transform:translateX(30px);backgroun
 @media(prefers-reduced-motion:reduce){.theme-toggle::before{transition:none;}}
 html[data-theme=dark] .hero-badge,html[data-theme=dark] .hero-badge strong{color:#182017;}
 html[data-theme=dark] main .profile-editorial .profile-chapter h3,html[data-theme=dark] main .faq-premium .faq-item summary{color:#edf0e7;}
+
+/* Define the international appointment section against adjacent dark surfaces. */
+html[data-theme=dark] .home-exterior{
+ background:linear-gradient(120deg,#0b120d,#101b12 65%,#0c140e);
+ border-top:1px solid #a9c08440;
+ border-bottom:1px solid #a9c08430;
+}
