@@ -209,11 +209,8 @@
       </div>
 <div id="formSuccess" class="form-success" role="status" hidden>Gracias por escribirnos. Recibimos tu mensaje.</div>
     </div>
-    <form class="contact-form contact-form-premium reveal" action="https://formsubmit.co/consultas@psicoterapiapyp.com" method="POST" id="contactForm">
-          <input type="hidden" name="_subject" value="Nueva consulta desde psicoterapiapyp.com">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://estudioideamos.github.io/psicoterapia-pyp/index.html?enviado=1#formulario">
+    <form class="contact-form contact-form-premium reveal" action="enviar-consulta.php" method="POST" id="contactForm">
+        <input type="hidden" name="pagina" value="inicio">
           <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off">
           <div class="field">
             <label for="f-nombre">Nombre</label>

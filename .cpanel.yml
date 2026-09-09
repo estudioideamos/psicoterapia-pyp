@@ -3,4 +3,4 @@ deployment:
   tasks:
     - /bin/mkdir -p /home18/psicoterapiapyp/public_html/assets
     - /bin/cp -R assets/. /home18/psicoterapiapyp/public_html/assets/
-    - /bin/cp index.html quienes-somos.html servicios.html contacto.html preguntas-frecuentes.html favicon.ico /home18/psicoterapiapyp/public_html/
+    - /bin/cp index.html quienes-somos.html servicios.html contacto.html preguntas-frecuentes.html favicon.ico enviar-consulta.php /home18/psicoterapiapyp/public_html/
