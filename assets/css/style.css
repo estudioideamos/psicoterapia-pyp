@@ -1636,3 +1636,4 @@ animation:sage-perimeter 7s linear infinite;
  .footer-col:not(.footer-col--cta) ul li a:focus-visible{color:#c2d99d;background:#a9c08408;}
  .footer-col:not(.footer-col--cta) ul li a:focus-visible{outline:1px solid #a9c084;outline-offset:3px;border-radius:6px;}
 }
+@media(max-width:767px){.hero h1,.page-hero h1{font-size:3.2rem;line-height:1;}}
