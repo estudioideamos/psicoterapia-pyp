@@ -1719,3 +1719,4 @@ html[data-theme=dark] .theme-toggle::before{transform:translateX(30px);backgroun
 @media(max-width:359px){.site-header .container{padding-inline:8px;gap:4px;}.header-cta{gap:4px;}}
 @media(prefers-reduced-motion:reduce){.theme-toggle::before{transition:none;}}
 html[data-theme=dark] .hero-badge,html[data-theme=dark] .hero-badge strong{color:#182017;}
+html[data-theme=dark] main .profile-editorial .profile-chapter h3,html[data-theme=dark] main .faq-premium .faq-item summary{color:#edf0e7;}
