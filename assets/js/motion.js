@@ -38,7 +38,7 @@
  loops.forEach((_,img)=>depthObserver.observe(img));
  document.addEventListener('visibilitychange',sync);
  reduced.addEventListener('change',()=>{sync();paint();});
- const phrases=[...document.querySelectorAll('.editorial-statement h2,.personal-care-columns')];
+ const phrases=[...document.querySelectorAll('.personal-care-columns')];
  phrases.forEach(el=>{el.classList.add('scroll-ink');el.classList.remove('reveal');});
  let pending=false;
  function paint(){
