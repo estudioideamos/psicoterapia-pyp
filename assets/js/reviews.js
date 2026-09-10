@@ -118,13 +118,13 @@
    observer.observe(section);
  });
  nearSection.then(load).then(data=>{
-   const reviews=data.reviews.filter(r=>typeof r.text==='string'&&typeof r.author==='string'&&typeof r.authorUrl==='string'&&r.authorUrl.startsWith('https://www.google.com/maps/contrib/')&&r.rating>=1&&r.rating<=5);
-   if(!reviews.length)return;
+   const reviews=data.reviews.filter(r=>typeof r.text==='string'&&typeof r.author==='string'&&typeof r.authorUrl==='string'&&r.authorUrl.startsWith('https://www.google.com/maps/contrib/')&&r.rating===5&&r.text.trim()).slice(0,5);
    if(Number.isFinite(data.rating)&&Number.isFinite(data.total)){
     section.querySelector('.reviews-score').textContent=data.rating.toFixed(1).replace('.',',');
     section.querySelector('.reviews-count').textContent=data.total+' reseñas';
     section.querySelector('.reviews-rating .review-stars').setAttribute('aria-label',data.rating+' de 5 estrellas');
    }
+   if(!reviews.length)return;
    const node=(tag,cls,value)=>{const el=document.createElement(tag);el.className=cls;if(value)el.textContent=value;return el;};
 
    const render=()=>{
@@ -143,7 +143,7 @@
      }));
      setup();
    };
-   section.querySelector('.reviews-bottom>p').textContent='Reseñas de Google Maps · Ordenadas por relevancia';
+   section.querySelector('.reviews-bottom>p').textContent='Selección de reseñas de 5 estrellas de Google Maps';
    render();
  }).catch(()=>{/* Keep the readable, server-rendered review selection. */});
 })();
