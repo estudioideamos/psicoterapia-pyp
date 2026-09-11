@@ -1665,7 +1665,7 @@ html[data-theme=dark] :is(.contact-form,.form-card,.reviews-rating){background:#
 html[data-theme=dark] :is(.editorial-marquee,.home-offer){color:#182017;}
 html[data-theme=dark] .on-dark .btn--primary{background:#eef1e5;color:#182017;}
 @media(max-width:600px){
- .header-chat-label{display:none;}
+ .site-header .header-chat-label{display:none;}
  .header-cta .btn--primary{width:40px;height:40px;padding:10px;min-width:40px;}
  .header-cta{gap:6px;}
  .site-header .container{gap:6px;}
