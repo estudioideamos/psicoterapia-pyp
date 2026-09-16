@@ -1,26 +1,14 @@
-# Google reviews on GitHub Pages
+# Reseñas de Google en producción
 
-The website calls Google Maps JavaScript / Places API (New) directly. No PHP,
-WordPress, widget, daily scrape, or separate hosting is used.
+El sitio está alojado en cPanel. El navegador consulta Maps JavaScript / Places API (New) al acercarse a la sección de reseñas, una vez por carga de página. No hay sincronización semanal ni caché compartida configurada.
 
-Activation:
-1. Create a dedicated browser API key in Google Cloud.
-2. Enable Maps JavaScript API and Places API (New).
-3. Set application restrictions to Websites, allowing:
-   - https://estudioideamos.github.io/*
-   - https://psicoterapiapyp.com/*
-   - https://www.psicoterapiapyp.com/*
-4. Restrict API usage to Maps JavaScript API and Places API (New).
-5. Set the browser key in assets/js/reviews-config.js and publish.
+Google devuelve hasta cinco reseñas; el sitio muestra las de cuatro y cinco estrellas sin alterar puntuación ni autoría. Conserva el respaldo si la consulta falla. Una visita que no llega a la sección no debe iniciar esa consulta.
 
-Browser keys are visible by design and must have the restrictions above.
-The previous WordPress key is IP restricted; it is not included in the repository.
-Place ID: ChIJC1DeTevLvJURP7AiY8YlzF8
+La clave pública está en `assets/js/reviews-config.js`. Verificar en Cloud:
+- Restricción de sitios: `https://psicoterapiapyp.com/*` y `https://www.psicoterapiapyp.com/*`.
+- APIs permitidas solo según el uso actual: Maps JavaScript API y Places API (New). Revisar si aún se necesita Places heredada antes de retirarla.
+- Facturación vinculada, cuotas disponibles y alertas de presupuesto. Las alertas no detienen automáticamente el gasto.
 
-The API returns up to five reviews sorted by relevance. The page requests only
-rating, userRatingCount and reviews, once when approaching the section.
-It retains the existing editorial selection if not configured or if Google
-fails. It does not persist API responses. Verify Google billing/quota and retain
-public privacy/terms documents when activating the API.
+No añadir permisos para localhost o dominios de pruebas a la clave de producción sin una necesidad concreta. No almacenar respuestas ni datos de pacientes en el repositorio.
 
-Docs: https://developers.google.com/maps/documentation/javascript/place-reviews
+Referencia: https://developers.google.com/maps/documentation/javascript/place-reviews
