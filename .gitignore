@@ -1,0 +1,17 @@
+# Private deliverables and local tooling
+/entregables/
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/
+*.pyc
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

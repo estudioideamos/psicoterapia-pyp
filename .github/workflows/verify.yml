@@ -1,0 +1,30 @@
+name: Verificación del sitio
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  site:
+    name: Site checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: References and vendor integrity
+        run: python3 scripts/validate-site.py
+      - name: PHP syntax
+        run: find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -r -n1 php -l
+      - name: JavaScript syntax
+        run: for file in assets/js/*.js; do node --check "$file"; done
+      - name: Deployment shell syntax
+        run: bash -n scripts/deploy-redirects.sh scripts/deploy-security.sh
+      - name: Whitespace
+        run: git diff --check
