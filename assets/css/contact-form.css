@@ -5,3 +5,5 @@
 .contact-form button:disabled {opacity:.65;cursor:wait}
 [data-theme="dark"] .contact-form .contact-field-error {color:#ffb5ad}
 [data-theme="dark"] .contact-form [aria-invalid="true"] {border-color:#ffb5ad}
+/* reCAPTCHA v3 (si el servidor lo habilita): el distintivo flotante taparía el botón de WhatsApp; el aviso legal que exige Google va dentro del formulario. */
+.grecaptcha-badge {visibility:hidden}
