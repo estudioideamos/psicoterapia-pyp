@@ -35,6 +35,7 @@ Los scripts preservan la configuración ajena del hosting. No sustituir `.htacce
 ## Mantenimiento y seguridad
 - [Política de seguridad](SECURITY.md).
 - [Guía de contribución](CONTRIBUTING.md).
+- [Formulario y protección contra spam](docs/formulario-antispam.md).
 - [Reseñas de Google](docs/google-reviews.md).
 - [Inventario de bibliotecas](docs/dependencies.json).
 - [Configuración de GitHub](docs/github.md).
