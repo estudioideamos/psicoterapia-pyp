@@ -519,3 +519,58 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
  window.addEventListener('scroll',update,{passive:true});update();
  button.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 })();
+// Smooth desktop wheel input; native touch, keyboard and nested scrollers remain available.
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const desktop = matchMedia('(hover: hover) and (pointer: fine)');
+  let frame = 0, target = scrollY, position = scrollY, lastWritten = scrollY, previousTime = 0;
+  const stop = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    previousTime = 0;
+    target = position = lastWritten = scrollY;
+  };
+  const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
+  const tick = time => {
+    if (Math.abs(scrollY - lastWritten) > 2) { stop(); return; }
+    const dt = previousTime ? Math.min(time - previousTime, 64) : 16;
+    previousTime = time;
+    target = Math.max(0, Math.min(target, maxScroll()));
+    position += (target - position) * (1 - Math.exp(-dt / 150));
+    const done = Math.abs(target - position) < 0.5;
+    if (done) position = target;
+    window.scrollTo({ top: position, behavior: 'instant' });
+    lastWritten = scrollY;
+    if (done) { frame = 0; previousTime = 0; }
+    else frame = requestAnimationFrame(tick);
+  };
+  window.addEventListener('wheel', event => {
+    if (reduced.matches || !desktop.matches || event.defaultPrevented || !event.cancelable ||
+        event.ctrlKey || event.metaKey || event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      stop(); return;
+    }
+    if (!event.deltaY) return;
+    // Let menus, fields and independently scrollable panels consume their own input.
+    for (let node = event.target instanceof Element ? event.target : null;
+         node && node !== document.documentElement; node = node.parentElement) {
+      if (node.matches('textarea, select, input, [contenteditable="true"]')) { stop(); return; }
+      const style = getComputedStyle(node);
+      if ((node === document.body && /hidden|clip/.test(style.overflowY)) ||
+          (node !== document.body && /auto|scroll/.test(style.overflowY) && node.scrollHeight > node.clientHeight)) {
+        stop(); return;
+      }
+    }
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+    const delta = event.deltaY * unit * 0.65;
+    if (!frame) target = position = lastWritten = scrollY;
+    // Reverse immediately rather than spending another wheel turn braking.
+    if ((target - position) * delta < 0) target = position;
+    target = Math.max(0, Math.min(maxScroll(), target + delta));
+    event.preventDefault();
+    if (!frame) frame = requestAnimationFrame(tick);
+  }, { passive: false });
+  ['pointerdown', 'touchstart', 'keydown', 'resize', 'pagehide'].forEach(type =>
+    window.addEventListener(type, stop, { passive: true }));
+  reduced.addEventListener('change', stop);
+  desktop.addEventListener('change', stop);
+})();
