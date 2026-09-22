@@ -38,6 +38,7 @@ Los scripts preservan la configuración ajena del hosting. No sustituir `.htacce
 - [Formulario y protección contra spam](docs/formulario-antispam.md).
 - [Reseñas de Google](docs/google-reviews.md).
 - [Inventario de bibliotecas](docs/dependencies.json).
+- [Build recortado de three.js](docs/three-custom-build.md).
 - [Configuración de GitHub](docs/github.md).
 
 El repositorio público no incluye una licencia de reutilización del diseño o del contenido. Se conservan las licencias de las bibliotecas de terceros en `assets/vendor/`. Los informes de cliente se mantienen fuera de Git.
