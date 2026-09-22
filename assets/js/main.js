@@ -536,7 +536,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
     const dt = previousTime ? Math.min(time - previousTime, 64) : 16;
     previousTime = time;
     target = Math.max(0, Math.min(target, maxScroll()));
-    position += (target - position) * (1 - Math.exp(-dt / 150));
+    position += (target - position) * (1 - Math.exp(-dt / 190));
     const done = Math.abs(target - position) < 0.5;
     if (done) position = target;
     window.scrollTo({ top: position, behavior: 'instant' });
@@ -561,7 +561,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
       }
     }
     const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
-    const delta = event.deltaY * unit * 0.65;
+    const delta = event.deltaY * unit * 0.55;
     if (!frame) target = position = lastWritten = scrollY;
     // Reverse immediately rather than spending another wheel turn braking.
     if ((target - position) * delta < 0) target = position;
