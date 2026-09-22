@@ -519,3 +519,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
  window.addEventListener('scroll',update,{passive:true});update();
  button.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 })();
+// Smooth desktop wheel input used to be a custom rAF handler here; it's now handled by
+// Lenis (assets/vendor/lenis + assets/js/smooth-scroll.js), so this block was removed
+// rather than left running alongside it — both intercepting the same wheel event fought
+// each other. If Lenis is ever dropped, this is the file to bring the handler back to.

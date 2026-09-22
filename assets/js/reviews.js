@@ -78,10 +78,12 @@
  setup();
  let inView=false,hovered=false,paused=false;
  const pause=document.createElement('button');
- pause.type='button';pause.className='reviews-pause';pause.textContent='Ⅱ';
+ const pauseIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" style="display:block;flex:none"><rect x="5" y="4" width="5" height="16" rx="1"/><rect x="14" y="4" width="5" height="16" rx="1"/></svg>';
+ const playIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" style="display:block;flex:none"><path d="M7 4 20 12 7 20Z"/></svg>';
+ pause.type='button';pause.className='reviews-pause';pause.innerHTML=pauseIcon;
  pause.setAttribute('aria-label','Pausar carrusel');pause.setAttribute('aria-pressed','false');
  controls.append(pause);
- pause.addEventListener('click',()=>{paused=!paused;pause.textContent=paused?'▶':'Ⅱ';pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Reanudar carrusel':'Pausar carrusel');});
+ pause.addEventListener('click',()=>{paused=!paused;pause.innerHTML=paused?playIcon:pauseIcon;pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'Reanudar carrusel':'Pausar carrusel');});
  cards.addEventListener('pointerenter',()=>{hovered=true;});
  cards.addEventListener('pointerleave',()=>{hovered=false;});
  new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;},{threshold:.3}).observe(cards);
