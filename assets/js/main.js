@@ -90,6 +90,15 @@ waFloat.setAttribute('aria-label', 'Escribir por WhatsApp');
 waFloat.innerHTML = `<span class="wa-float-ring"></span><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C9.37 3 3.96 8.4 3.96 15.06c0 2.22.6 4.3 1.65 6.09L4 29l7.99-1.57a12.9 12.9 0 0 0 4.05.65c6.67 0 12.08-5.4 12.08-12.06C28.12 8.4 22.71 3 16.04 3Zm0 21.9c-1.35 0-2.68-.26-3.9-.76l-.28-.11-4.75.93.95-4.63-.13-.3a10.03 10.03 0 0 1-1.55-5.37c0-5.55 4.52-10.06 10.09-10.06 2.7 0 5.23 1.05 7.13 2.95a10.02 10.02 0 0 1 2.96 7.12c0 5.56-4.52 10.07-10.09 10.07l.02-.02Zm5.53-7.54c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.36.22-.66.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.51-1.79-1.69-2.09-.18-.3-.02-.46.13-.6.14-.14.3-.36.45-.55.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.15 4.54.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35Z"/></svg>`;
 document.body.appendChild(waFloat);
 
+/* Se oculta mientras el crédito de Ideamos en el pie está a la vista, para que no se le encime. */
+const footerCredit = document.querySelector('.footer-credit');
+if (footerCredit && 'IntersectionObserver' in window) {
+  new IntersectionObserver(
+    entries => waFloat.classList.toggle('is-hidden', entries[0].isIntersecting),
+    { rootMargin: '0px 0px -10px 0px' }
+  ).observe(footerCredit);
+}
+
 document.querySelectorAll('.hero,.page-hero').forEach(hero => {
   if(hero.querySelector('.hero-badge')) return;
   const badge=document.createElement('a');
