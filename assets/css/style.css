@@ -51,6 +51,14 @@ html{ scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
 }
+/* Lenis (scroll suave con la rueda). Reglas base de lenis.css (MIT, darkroom.engineering); además,
+   con Lenis activo el scroll-behavior nativo debe apagarse o se suavizaría dos veces. */
+html.lenis, html.lenis body{ height: auto; }
+html.lenis{ scroll-behavior: auto !important; }
+.lenis.lenis-stopped{ overflow: clip; }
+.lenis [data-lenis-prevent], .lenis [data-lenis-prevent-wheel], .lenis [data-lenis-prevent-touch]{ overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe{ pointer-events: none; }
+.lenis [tabindex="-1"]:focus{ outline: none; } /* destinos de anclas enfocados por script (sin recuadro) */
 
 body{
   margin:0;
