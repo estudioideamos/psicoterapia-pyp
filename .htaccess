@@ -2,7 +2,12 @@
 # Installed as a marked block; existing hosting configuration is preserved.
 Options -Indexes
 DirectoryIndex index.html
+# Bound contact requests before PHP parses the body.
+<Files "enviar-consulta.php">
+ LimitRequestBody 20000
+</Files>
 <IfModule mod_headers.c>
+ Header always set Content-Security-Policy "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'"
  Header always set X-Content-Type-Options "nosniff"
  Header always set X-Frame-Options "SAMEORIGIN"
  Header always set Referrer-Policy "strict-origin-when-cross-origin"
@@ -21,7 +26,7 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
  RewriteEngine On
  RewriteRule (^|/)\.(?!well-known/) - [F,L]
- RewriteRule ^(?:docs|scripts)/ - [F,L]
+ RewriteRule ^(?:docs|scripts|entregables)/ - [F,L]
 </IfModule>
 <FilesMatch "(^\.|package(-lock)?\.json$|\.map$|\.log$|\.bak$|\.sql$|\.zip$|\.tar$|\.tar\.gz$|\.tgz$|\.rar$|\.7z$)">
  Require all denied

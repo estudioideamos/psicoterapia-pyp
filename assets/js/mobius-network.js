@@ -1,4 +1,4 @@
-import * as THREE from '../vendor/three/three.module.min.js';
+import * as THREE from '../vendor/three/three.module.min.js?v=0.186.1';
 /* Psicoterapia P&P — red/malla de la cinta de Moebius, en vivo (WebGL/Three.js)
    Geometría paramétrica real de una banda de Moebius, renderizada como red de
    nodos y conexiones (no una foto ni un video): un objeto abstracto propio.
@@ -131,9 +131,13 @@ import * as THREE from '../vendor/three/three.module.min.js';
   /* ---------- animación continua, cinematográfica y lenta ---------- */
   const clock = new THREE.Clock();
   let visible = true, inViewport = true, lastRender = 0;
-  new IntersectionObserver(entries => { inViewport = entries[0].isIntersecting; }).observe(mount);
+  const syncLoop = () => {
+    if (visible && inViewport) { if (!raf) raf = requestAnimationFrame(tick); }
+    else { cancelAnimationFrame(raf); raf = 0; }
+  };
+  new IntersectionObserver(entries => { inViewport = entries[0].isIntersecting; syncLoop(); }).observe(mount);
   let firstFramePainted = false;
-  document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; syncLoop(); });
 
   function tick(){
     raf = requestAnimationFrame(tick);

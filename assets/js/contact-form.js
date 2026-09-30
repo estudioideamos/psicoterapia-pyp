@@ -1,4 +1,10 @@
 (() => {
+  const fetchWithTimeout = async (url, options = {}) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
+    try { return await fetch(url, {...options, signal: controller.signal}); }
+    finally { clearTimeout(timer); }
+  };
   const form = document.getElementById('contactForm');
   if (!form || !window.fetch) return;
   form.noValidate = true;
@@ -79,7 +85,7 @@
   function refreshToken() {
     const url = new URL(form.action, window.location.href);
     url.searchParams.set('t', '1');
-    tokenRequest = fetch(url, {headers: {Accept: 'application/json'}, cache: 'no-store'})
+    tokenRequest = fetchWithTimeout(url, {headers: {Accept: 'application/json'}, cache: 'no-store'})
       .then(response => response.json())
       .then(data => {
         if (!data.ok) throw new Error('token');
@@ -104,8 +110,10 @@
     if (siteKey) {
       for (let i = 0; i < 40 && !window.grecaptcha; i++) await new Promise(resolve => setTimeout(resolve, 100));
       captchaField.value = await new Promise(resolve => {
-        if (!window.grecaptcha) return resolve('');
-        window.grecaptcha.ready(() => window.grecaptcha.execute(siteKey, {action: 'contacto'}).then(resolve, () => resolve('')));
+        const timer = setTimeout(() => resolve(''), 5000);
+        const done = value => { clearTimeout(timer); resolve(value); };
+        if (!window.grecaptcha) return done('');
+        window.grecaptcha.ready(() => window.grecaptcha.execute(siteKey, {action: 'contacto'}).then(done, () => done('')));
       });
     }
   }
@@ -123,13 +131,13 @@
     status.textContent = 'Enviando mensaje…';
     try {
       await prepareAntiSpam();
-      const response = await fetch(form.action, {method: 'POST', body: new FormData(form), headers: {Accept: 'application/json'}});
+      const response = await fetchWithTimeout(form.action, {method: 'POST', body: new FormData(form), headers: {Accept: 'application/json'}});
       const data = await response.json();
       if (!response.ok || !data.ok) throw new Error(data.message || 'No pudimos enviar el mensaje. Intentá nuevamente.');
       status.textContent = 'Gracias por escribirnos. Tu mensaje fue enviado.';
       window.location.assign('/gracias/');
     } catch (error) {
-      status.textContent = error instanceof SyntaxError || error instanceof TypeError
+      status.textContent = error instanceof SyntaxError || error instanceof TypeError || error.name === 'AbortError'
         ? 'No pudimos confirmar el envío. Conservamos tus datos; revisá tu conexión e intentá nuevamente.'
         : error.message;
       status.focus();

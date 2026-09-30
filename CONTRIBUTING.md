@@ -6,4 +6,4 @@
 4. Ejecutar `python scripts/validate-site.py`; no incorporar archivos privados ni salidas de pruebas.
 5. Abrir PR con problema, solución, validación y necesidad de despliegue. Integrar solo con **Site checks** aprobado.
 
-Las bibliotecas de `assets/vendor/` están copiadas al repositorio. Dependabot actualiza referencias de Actions, pero no esos archivos. Para actualizar bibliotecas: obtener una versión oficial, conservar licencia, revisar avisos de seguridad, probarla y actualizar versiones/hashes de `docs/dependencies.json`. No modificar hashes para ocultar cambios no revisados.
+Las bibliotecas de `assets/vendor/` están copiadas al repositorio. Dependabot vigila Actions y las versiones declaradas en package.json; los archivos copiados requieren reconstrucción con npm run build:vendor. Para actualizar bibliotecas: obtener una versión oficial, conservar licencia, revisar avisos de seguridad, probarla y actualizar versiones/hashes de `docs/dependencies.json`. No modificar hashes para ocultar cambios no revisados.

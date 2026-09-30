@@ -288,7 +288,7 @@ function scheduleMobius(){
   const load = () => {
     const network=document.createElement('script');
     network.type='module';
-    network.src='assets/js/mobius-network.js?v=20260909-security';
+    network.src='assets/js/mobius-network.js?v=20260929-idle';
     document.head.appendChild(network);
   };
   const schedule = () => {
