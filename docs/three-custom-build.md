@@ -47,3 +47,17 @@ viendo igual en el navegador (no hay test automático para el render de WebGL).
 
 La licencia (`assets/vendor/three/LICENSE`) sigue siendo la de la versión de `three` instalada —
 copiarla del paquete de npm sin modificar.
+
+## Procedimiento reproducible desde el 29/09/2026
+
+Las versiones exactas de bibliotecas y esbuild ahora están en `package.json` y `package-lock.json`.
+El procedimiento anterior se conserva como contexto; para reconstruir, usar:
+
+```sh
+npm ci --ignore-scripts
+npm run build:vendor
+npm run audit:security
+python scripts/validate-site.py
+```
+
+El script actualiza las bibliotecas copiadas y sus hashes. Revisar el diff y probar el hero y el selector telefónico antes de integrar. Un PR de Dependabot que modifica versiones debe incluir esa reconstrucción; CI detecta discrepancias entre el manifiesto y las versiones declaradas.

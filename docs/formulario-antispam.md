@@ -44,3 +44,8 @@ Una prueba real desde el formulario requiere autorización (llega a la casilla d
 ## Límites conocidos
 - No elimina el spam de forma absoluta: un bot que abra la página en un navegador real y espere puede pasar los controles sin reCAPTCHA. Por eso conviene activarlo.
 - Antes de esta versión, el campo `Teléfono internacional` nunca llegaba al correo (PHP convierte los espacios de los nombres de campo en `_`); ahora llega con el código de país.
+
+## Tratamiento de fallos (29/09/2026)
+Si reCAPTCHA está habilitado y su servicio no responde, el formulario responde 503 y ofrece email/WhatsApp; no omite la verificación. Errores de configuración, firma o almacenamiento también detienen el envío con mensaje genérico, sin mostrar rutas ni excepciones. Los logs registran el tipo de fallo sin datos de la consulta.
+
+Pruebas aisladas: `python tests/contact-security.py` con PHP 8.x. Sustituyen mail(), utilizan un directorio temporal y no envían correo real.

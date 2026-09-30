@@ -1,0 +1,18 @@
+{
+  "name": "psicoterapia-pyp-maintenance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned sources for the locally vendored browser libraries; no production Node runtime.",
+  "dependencies": {
+    "intl-tel-input": "29.5.3",
+    "lenis": "1.3.26",
+    "three": "0.186.1"
+  },
+  "scripts": {
+    "audit:security": "npm audit --omit=dev --audit-level=moderate",
+    "build:vendor": "node scripts/build-vendor.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

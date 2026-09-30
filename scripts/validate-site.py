@@ -32,3 +32,7 @@ for name, expected in manifest["sha256"].items():
 if errors:
     raise SystemExit("\n".join(errors))
 print(f"OK: {len(pages)} pages and {len(manifest['sha256'])} vendor files")
+
+package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+if manifest["dependencies"] != package["dependencies"]:
+    raise SystemExit("Dependency versions differ: run npm ci --ignore-scripts and npm run build:vendor, then review the result")

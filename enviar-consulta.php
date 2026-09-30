@@ -3,6 +3,11 @@ declare(strict_types=1);
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 header('Content-Type: text/html; charset=UTF-8');
+ini_set('display_errors', '0');
+set_exception_handler(function (Throwable $error): void {
+    error_log('PYP contact: unexpected internal failure');
+    stopRequest(503, 'No pudimos procesar la consulta. Intentá más tarde o escribinos por email.');
+});
 
 // Configuración opcional del servidor (fuera de public_html y fuera del repositorio):
 //   /home18/psicoterapiapyp/pyp-contact-secrets.php
@@ -19,6 +24,7 @@ if (is_readable($configFile)) {
         include_once $configFile;
     } catch (Throwable $error) {
         error_log('PYP contact: archivo de configuración ilegible');
+        stopRequest(503, 'El formulario no está disponible temporalmente. Escribinos por email.');
     }
 }
 
@@ -57,6 +63,7 @@ function finishOk(): void {
 // vencimiento. Nunca se guardan mensajes, nombres, emails ni IP en claro.
 function stateDir(): string {
     $dir = sys_get_temp_dir().'/pyp-contact-'.substr(hash('sha256', __DIR__), 0, 16);
+    if (is_link($dir)) throw new RuntimeException('Invalid state directory');
     if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) stopRequest(503, 'Intentá nuevamente más tarde o escribinos por email.');
     return $dir;
 }
@@ -67,20 +74,27 @@ function formSecret(string $dir): string {
     $secret = bin2hex(random_bytes(32));
     $handle = @fopen($file, 'x');   // creación exclusiva: si otro proceso ganó, usamos la suya
     if ($handle) {
-        fwrite($handle, $secret);
+        if (fwrite($handle, $secret) !== strlen($secret) || !fflush($handle)) {
+            fclose($handle);
+            throw new RuntimeException('Cannot persist signing key');
+        }
         fclose($handle);
         @chmod($file, 0600);
         return $secret;
     }
     $existing = @file_get_contents($file);
-    return (is_string($existing) && strlen($existing) >= 32) ? $existing : $secret;
+    if (!is_string($existing) || strlen($existing) < 32) throw new RuntimeException('Signing key unavailable');
+    return $existing;
 }
 function withState(string $dir, callable $change) {
     $file = @fopen($dir.'/state.json', 'c+');
     if (!$file || !flock($file, LOCK_EX)) stopRequest(503, 'Intentá nuevamente más tarde.');
     $now = time();
-    $state = json_decode((string)stream_get_contents($file), true);
-    if (!is_array($state)) $state = [];
+    @chmod($dir.'/state.json', 0600);
+    $rawState = stream_get_contents($file);
+    if ($rawState === false) throw new RuntimeException('Cannot read state');
+    $state = $rawState === '' ? [] : json_decode($rawState, true, 512, JSON_THROW_ON_ERROR);
+    if (!is_array($state)) throw new RuntimeException('Invalid state');
     foreach (['ip' => 'until', 'nonces' => null, 'dups' => null] as $section => $field) {
         $entries = is_array($state[$section] ?? null) ? $state[$section] : [];
         foreach ($entries as $key => $entry) {
@@ -91,10 +105,10 @@ function withState(string $dir, callable $change) {
     }
     if ((int)($state['global']['until'] ?? 0) <= $now) $state['global'] = ['until' => $now + 3600, 'count' => 0];
     $result = $change($state, $now);
-    rewind($file);
-    ftruncate($file, 0);
-    fwrite($file, json_encode($state));
-    fflush($file);
+    $encoded = json_encode($state, JSON_THROW_ON_ERROR);
+    if (!rewind($file) || !ftruncate($file, 0) || fwrite($file, $encoded) !== strlen($encoded) || !fflush($file)) {
+        throw new RuntimeException('Cannot persist state');
+    }
     flock($file, LOCK_UN);
     fclose($file);
     return $result;
@@ -190,9 +204,8 @@ if (recaptchaEnabled()) {
         }
         $result = is_string($raw) ? json_decode($raw, true) : null;
         if (!is_array($result)) {
-            // Si Google no responde no bloqueamos consultas reales: quedan los demás controles.
-            error_log('PYP contact: verificación reCAPTCHA no disponible, se omite');
-            $verified = true;
+            error_log('PYP contact: verificación reCAPTCHA no disponible');
+            stopRequest(503, 'La verificación no está disponible. Intentá más tarde o contactanos por email o WhatsApp.', 'captcha');
         } else {
             $allowedHostnames = [];
             foreach ($allowedOrigins as $origin) $allowedHostnames[] = (string)parse_url($origin, PHP_URL_HOST);
