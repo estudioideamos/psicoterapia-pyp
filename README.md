@@ -44,3 +44,4 @@ Los scripts preservan la configuración ajena del hosting. No sustituir `.htacce
 El repositorio público no incluye una licencia de reutilización del diseño o del contenido. Se conservan las licencias de las bibliotecas de terceros en `assets/vendor/`. Los informes de cliente se mantienen fuera de Git.
 
 - [Revisión de seguridad OWASP y pendientes de producción](docs/auditoria-seguridad-2026-09.md).
+- [CSP de scripts en observación](docs/csp-script-src.md).
