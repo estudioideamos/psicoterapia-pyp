@@ -6,7 +6,7 @@
   "dependencies": {
     "intl-tel-input": "29.5.3",
     "lenis": "1.3.26",
-    "three": "0.186.1"
+    "three": "0.187.0"
   },
   "scripts": {
     "audit:security": "npm audit --omit=dev --audit-level=moderate",
