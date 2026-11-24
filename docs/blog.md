@@ -1,6 +1,8 @@
 # Blog editorial de Psicoterapia P&P
 
-Publicado el 24 de noviembre de 2026 en `/blog/`. Cuatro artículos originales orientados a consultas reales antes de empezar terapia: cuándo consultar, primera sesión, preparación de una sesión online y límites en los vínculos.
+Estado: **borrador, retirado del sitio público a pedido del cliente**. Se conservan los cuatro artículos y sus imágenes en el repositorio. No hay enlaces al blog en la navegación pública ni entradas en el sitemap. `scripts/deploy-blog-status.sh` hace que `/blog/`, sus artículos y sus imágenes devuelvan 404, incluso si quedan archivos de un despliegue anterior. `.cpanel.yml` ya no publica la carpeta blog y mantiene esta restricción.
+
+Para volver a publicar se necesita autorización del cliente: quitar el bloque `PYP blog draft` del hosting y su instalador del despliegue, restaurar navegación y sitemap y volver a incluir la copia de `blog/`. Generar las páginas por sí solo no las hace públicas.
 
 ## Hosting actual
 

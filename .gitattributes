@@ -2,6 +2,7 @@
 scripts/deploy-redirects.sh text eol=lf
 
 scripts/deploy-security.sh text eol=lf
+scripts/deploy-blog-status.sh text eol=lf
 .htaccess text eol=lf
 assets/vendor/lenis/* -text
 assets/vendor/three/* -text
