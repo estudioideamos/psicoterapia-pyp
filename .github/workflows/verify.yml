@@ -29,6 +29,6 @@ jobs:
       - name: JavaScript syntax
         run: for file in assets/js/*.js; do node --check "$file"; done
       - name: Deployment shell syntax
-        run: bash -n scripts/deploy-redirects.sh scripts/deploy-security.sh
+        run: bash -n scripts/deploy-redirects.sh scripts/deploy-security.sh scripts/deploy-blog-status.sh
       - name: Whitespace
         run: git diff --check
