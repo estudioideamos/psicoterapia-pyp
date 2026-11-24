@@ -7,5 +7,7 @@ deployment:
     - /bin/bash scripts/deploy-redirects.sh
     - /bin/mkdir -p /home18/psicoterapiapyp/public_html/gracias
     - /bin/cp gracias/index.html /home18/psicoterapiapyp/public_html/gracias/index.html
+    - /bin/mkdir -p /home18/psicoterapiapyp/public_html/blog
+    - /bin/cp -R blog/. /home18/psicoterapiapyp/public_html/blog/
     - /bin/cp robots.txt sitemap.xml /home18/psicoterapiapyp/public_html/
     - /bin/bash scripts/deploy-security.sh

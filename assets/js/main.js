@@ -151,7 +151,7 @@ if(navToggle && mobilePanel){
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
     }
   });
-  matchMedia('(min-width:901px)').addEventListener('change',e=>{if(e.matches)setMenu(false);});
+  matchMedia('(min-width:1101px)').addEventListener('change',e=>{if(e.matches)setMenu(false);});
 }
 /* ---------------------------------------------------------
    3) Índice editorial de motivos de consulta (acordeón simple)
