@@ -1,13 +1,13 @@
 ---
 deployment:
   tasks:
-    - /bin/mkdir -p /home18/psicoterapiapyp/public_html/assets
-    - /bin/cp -R assets/. /home18/psicoterapiapyp/public_html/assets/
-    - /bin/cp index.html quienes-somos.html servicios.html contacto.html preguntas-frecuentes.html favicon.ico enviar-consulta.php /home18/psicoterapiapyp/public_html/
+    - /bin/mkdir -p /home2/psicoterapiapyp/public_html/assets
+    - /bin/cp -R assets/. /home2/psicoterapiapyp/public_html/assets/
+    - /bin/cp index.html quienes-somos.html servicios.html contacto.html preguntas-frecuentes.html favicon.ico enviar-consulta.php /home2/psicoterapiapyp/public_html/
     - /bin/bash scripts/deploy-redirects.sh
-    - /bin/mkdir -p /home18/psicoterapiapyp/public_html/gracias
-    - /bin/cp gracias/index.html /home18/psicoterapiapyp/public_html/gracias/index.html
-    - /bin/mkdir -p /home18/psicoterapiapyp/public_html/blog
-    - /bin/cp -R blog/. /home18/psicoterapiapyp/public_html/blog/
-    - /bin/cp robots.txt sitemap.xml /home18/psicoterapiapyp/public_html/
+    - /bin/mkdir -p /home2/psicoterapiapyp/public_html/gracias
+    - /bin/cp gracias/index.html /home2/psicoterapiapyp/public_html/gracias/index.html
+    - /bin/mkdir -p /home2/psicoterapiapyp/public_html/blog
+    - /bin/cp -R blog/. /home2/psicoterapiapyp/public_html/blog/
+    - /bin/cp robots.txt sitemap.xml /home2/psicoterapiapyp/public_html/
     - /bin/bash scripts/deploy-security.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-target="/home18/psicoterapiapyp/public_html/.htaccess"
+target="/home2/psicoterapiapyp/public_html/.htaccess"
 marker="# BEGIN PYP legacy redirects"
 if [ -f "$target" ] && grep -Fqx "$marker" "$target"; then
   exit 0
@@ -9,7 +9,7 @@ if [ -L "$target" ]; then
   echo "Refusing to replace a symbolic link: $target" >&2
   exit 1
 fi
-tempfile=$(mktemp "/home18/psicoterapiapyp/public_html/.htaccess-pyp.XXXXXX")
+tempfile=$(mktemp "/home2/psicoterapiapyp/public_html/.htaccess-pyp.XXXXXX")
 trap 'rm -f "$tempfile"' EXIT
 cat > "$tempfile" <<'RULES'
 # BEGIN PYP legacy redirects
