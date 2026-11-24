@@ -2,6 +2,10 @@
 
 Publicado el 24 de noviembre de 2026 en `/blog/`. Cuatro artículos originales orientados a consultas reales antes de empezar terapia: cuándo consultar, primera sesión, preparación de una sesión online y límites en los vínculos.
 
+## Hosting actual
+
+Verificado el 24 de noviembre de 2026: `psicoterapiapyp.com` apunta a `167.250.5.107`, servidor `roma.servidoraweb.net`, SSH 9022, usuario `psicoterapiapyp`. El document root confirmado por cPanel es `/home2/psicoterapiapyp/public_html` y el repositorio está en `/home2/psicoterapiapyp/repositories/psicoterapia-pyp`. El servidor anterior Apofis (`167.250.5.35`, `/home18/…`) ya no sirve el dominio. No usarlo para publicaciones futuras.
+
 ## Edición y publicación
 
 - Contenido: `scripts/blog-content.json`. Cada entrada tiene slug, categoría, título, descripción, imagen, secciones y fuentes.
