@@ -19,7 +19,7 @@ class References(HTMLParser):
             if not target.exists():
                 errors.append(f"{self.page.relative_to(ROOT)}: missing {url.path}")
 
-pages = list(ROOT.glob("*.html")) + list((ROOT / "gracias").glob("*.html"))
+pages = list(ROOT.glob("*.html")) + list((ROOT / "gracias").glob("*.html")) + list((ROOT / "blog").rglob("*.html"))
 for page in pages:
     parser = References()
     parser.page = page
