@@ -43,7 +43,7 @@ ${post ? `<meta property="article:published_time" content="${date}T12:00:00-03:0
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>${fonts}
 <link rel="stylesheet" href="/assets/css/style.css?v=20261124-blog"><link rel="stylesheet" href="/assets/css/blog.css?v=20261124">
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c')}</script>
-</head>${header.replace('<body>', '<body class="blog-page">')}
+</head>${header.replace('<body>', `<body class="blog-page${post ? ' blog-article-page' : ''}">`)}
 <main id="contenido">${body}</main>${footer}`;
 }
 const featured = posts[0];
